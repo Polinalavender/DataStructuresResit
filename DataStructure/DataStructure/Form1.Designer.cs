@@ -94,6 +94,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.ForeColor = Color.DarkOrchid;
             label2.Location = new Point(12, 83);
             label2.Name = "label2";
             label2.Size = new Size(109, 20);
@@ -103,6 +104,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.ForeColor = Color.DarkOrchid;
             label3.Location = new Point(12, 159);
             label3.Name = "label3";
             label3.Size = new Size(156, 20);
@@ -155,6 +157,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.DarkOrchid;
             label5.Location = new Point(421, 83);
             label5.Name = "label5";
             label5.Size = new Size(122, 20);
@@ -219,6 +222,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.DarkOrchid;
             label6.Location = new Point(421, 217);
             label6.Name = "label6";
             label6.Size = new Size(139, 20);
@@ -246,6 +250,7 @@
             // label9
             // 
             label9.AutoSize = true;
+            label9.ForeColor = Color.DarkOrchid;
             label9.Location = new Point(657, 34);
             label9.Name = "label9";
             label9.Size = new Size(131, 20);
