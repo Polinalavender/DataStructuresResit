@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Leenlaptop 1\\Desktop\\DataStructure\\DataStructure\\DataStructure.csproj",
+      "projectUniqueName": "C:\\Users\\Leenlaptop 1\\Documents\\GitHub\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj",
       "projectName": "DataStructure",
-      "projectPath": "C:\\Users\\Leenlaptop 1\\Desktop\\DataStructure\\DataStructure\\DataStructure.csproj",
+      "projectPath": "C:\\Users\\Leenlaptop 1\\Documents\\GitHub\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj",
       "packagesPath": "C:\\Users\\Leenlaptop 1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Leenlaptop 1\\Desktop\\DataStructure\\DataStructure\\obj\\",
+      "outputPath": "C:\\Users\\Leenlaptop 1\\Documents\\GitHub\\DataStructuresResit\\DataStructure\\DataStructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
