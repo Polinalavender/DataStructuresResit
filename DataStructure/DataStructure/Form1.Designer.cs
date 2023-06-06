@@ -147,6 +147,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.ForeColor = Color.DarkOrchid;
             label4.Location = new Point(12, 240);
             label4.Name = "label4";
             label4.Size = new Size(52, 20);
