@@ -64,27 +64,41 @@ namespace DataStructure
 
         private void lenearGoButton_Click(object sender, EventArgs e)
         {
-                string target = linearInputBox.Text;
+            string target = linearInputBox.Text;
 
-                if (!string.IsNullOrEmpty(target))
+            if (!string.IsNullOrEmpty(target))
+            {
+                int result = linkedList.LinearSearch(target);
+
+                if (result >= 0)
                 {
-                    int result = linkedList.LinearSearch(target);
-
-                    if (result >= 0)
-                    {
-                        string[] values = linkedList.ToArray();
-                        string foundItem = values[result];
-                        richTextBox1.Text = $"{foundItem}";
-                    }
-                    else
-                    {
-                        richTextBox1.Text = "Not found";
-                    }
+                    string[] values = linkedList.ToArray();
+                    string foundItem = values[result];
+                    richTextBox1.Text = $"{foundItem}";
                 }
                 else
                 {
-                    MessageBox.Show("Please enter a valid search target.");
+                    richTextBox1.Text = "Not found";
                 }
             }
+            else
+            {
+                MessageBox.Show("Please enter a valid search target.");
+            }
         }
+
+        private void bucketSortButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bucketSortButton.Checked)
+            {
+                linkedList.BucketSort();
+                string[] values = linkedList.ToArray();
+                richTextBox1.Text = string.Join(Environment.NewLine, values);
+            }
+            else
+            {
+                MessageBox.Show("Please select the Bucket Sort option.");
+            }
+        }
+    }
 }

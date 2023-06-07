@@ -179,5 +179,80 @@ namespace DataStructure
                 }
                 return -1; // Value not found
         }
+
+        //Bucket Sort -----------------------------------------------------//
+
+        public void BucketSort()
+        {
+            if (numberOfElements <= 1)
+                return;
+
+            // Determine the maximum string length in the linked list
+            int maxLength = 0;
+            Node current = head;
+            while (current != null)
+            {
+                int length = current.Value.ToString().Length;
+                if (length > maxLength)
+                    maxLength = length;
+                current = current.Next;
+            }
+
+            // Create buckets for each character position
+            List<T>[] buckets = new List<T>[maxLength];
+
+            for (int i = 0; i < maxLength; i++)
+            {
+                buckets[i] = new List<T>();
+            }
+
+            // Add values to the appropriate bucket based on the character at the current position
+            current = head;
+            while (current != null)
+            {
+                Node next = current.Next; // Store the next node before modifying the current node
+                T value = current.Value;
+                string stringValue = value.ToString();
+                int length = stringValue.Length;
+
+                for (int j = 0; j < length; j++)
+                {
+                    int position = length - 1 - j; // Determine the position in the string to consider
+
+                    buckets[position].Add(value);
+                }
+
+                current = next; // Move to the next node
+            }
+
+            // Sort each bucket and concatenate the sorted buckets
+            Node sortedListHead = null;
+            Node sortedListEnd = null;
+            for (int i = 0; i < maxLength; i++)
+            {
+                List<T> bucket = buckets[i];
+                bucket.Sort(); // Sort the values in the bucket using the default comparer for type T
+
+                // Add the sorted values to the sorted list
+                foreach (T value in bucket)
+                {
+                    Node newNode = new Node(value);
+                    if (sortedListHead == null)
+                    {
+                        sortedListHead = newNode;
+                        sortedListEnd = newNode;
+                    }
+                    else
+                    {
+                        sortedListEnd.Next = newNode;
+                        sortedListEnd = newNode;
+                    }
+                }
+            }
+
+            // Update the linked list with the sorted values
+            head = sortedListHead;
+            end = sortedListEnd;
+        }
     }
 }

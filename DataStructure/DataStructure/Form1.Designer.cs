@@ -39,7 +39,7 @@
             listButton = new RadioButton();
             label4 = new Label();
             label5 = new Label();
-            radioButton4 = new RadioButton();
+            bucketSortButton = new RadioButton();
             radioButton5 = new RadioButton();
             binaryInputBox = new TextBox();
             linearInputBox = new TextBox();
@@ -167,16 +167,17 @@
             label5.TabIndex = 11;
             label5.Text = "Sort algorithms:";
             // 
-            // radioButton4
+            // bucketSortButton
             // 
-            radioButton4.AutoSize = true;
-            radioButton4.Location = new Point(421, 121);
-            radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(105, 24);
-            radioButton4.TabIndex = 12;
-            radioButton4.TabStop = true;
-            radioButton4.Text = "Bucket Sort";
-            radioButton4.UseVisualStyleBackColor = true;
+            bucketSortButton.AutoSize = true;
+            bucketSortButton.Location = new Point(421, 121);
+            bucketSortButton.Name = "bucketSortButton";
+            bucketSortButton.Size = new Size(105, 24);
+            bucketSortButton.TabIndex = 12;
+            bucketSortButton.TabStop = true;
+            bucketSortButton.Text = "Bucket Sort";
+            bucketSortButton.UseVisualStyleBackColor = true;
+            bucketSortButton.CheckedChanged += bucketSortButton_CheckedChanged;
             // 
             // radioButton5
             // 
@@ -319,7 +320,7 @@
             Controls.Add(linearInputBox);
             Controls.Add(binaryInputBox);
             Controls.Add(radioButton5);
-            Controls.Add(radioButton4);
+            Controls.Add(bucketSortButton);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(listButton);
@@ -350,7 +351,7 @@
         private RadioButton listButton;
         private Label label4;
         private Label label5;
-        private RadioButton radioButton4;
+        private RadioButton bucketSortButton;
         private RadioButton radioButton5;
         private TextBox binaryInputBox;
         private TextBox linearInputBox;
