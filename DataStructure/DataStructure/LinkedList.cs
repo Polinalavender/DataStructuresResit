@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace DataStructure
 {
@@ -133,6 +134,8 @@ namespace DataStructure
             }
             return array;
         }
+
+        //Binary search ------------------------------------------------------//
         public int BinarySearch(T value)
         {
             T[] array = ToArray();
@@ -156,9 +159,25 @@ namespace DataStructure
                     right = mid - 1;
                 }
             }
-
-            return -1; // Value not found
+            return -1;
         }
 
+        //Linear search ----------------------------------------------//
+
+        public int LinearSearch(T value)
+        {
+            Node current = head;
+            int index = 0;
+            while (current != null)
+            {
+                if (current.Value.Equals(value))
+                {
+                    return index;
+                }
+                    current = current.Next;
+                    index++;
+                }
+                return -1; // Value not found
+        }
     }
 }

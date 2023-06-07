@@ -42,9 +42,9 @@
             radioButton4 = new RadioButton();
             radioButton5 = new RadioButton();
             binaryInputBox = new TextBox();
-            textBox3 = new TextBox();
+            linearInputBox = new TextBox();
             goBinaryButton = new Button();
-            button3 = new Button();
+            lenearGoButton = new Button();
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
@@ -196,12 +196,12 @@
             binaryInputBox.Size = new Size(125, 27);
             binaryInputBox.TabIndex = 14;
             // 
-            // textBox3
+            // linearInputBox
             // 
-            textBox3.Location = new Point(421, 383);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 15;
+            linearInputBox.Location = new Point(421, 383);
+            linearInputBox.Name = "linearInputBox";
+            linearInputBox.Size = new Size(125, 27);
+            linearInputBox.TabIndex = 15;
             // 
             // goBinaryButton
             // 
@@ -213,14 +213,15 @@
             goBinaryButton.UseVisualStyleBackColor = true;
             goBinaryButton.Click += goBinaryButton_Click;
             // 
-            // button3
+            // lenearGoButton
             // 
-            button3.Location = new Point(552, 381);
-            button3.Name = "button3";
-            button3.Size = new Size(41, 29);
-            button3.TabIndex = 17;
-            button3.Text = "go!";
-            button3.UseVisualStyleBackColor = true;
+            lenearGoButton.Location = new Point(552, 381);
+            lenearGoButton.Name = "lenearGoButton";
+            lenearGoButton.Size = new Size(41, 29);
+            lenearGoButton.TabIndex = 17;
+            lenearGoButton.Text = "go!";
+            lenearGoButton.UseVisualStyleBackColor = true;
+            lenearGoButton.Click += lenearGoButton_Click;
             // 
             // label6
             // 
@@ -313,9 +314,9 @@
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
-            Controls.Add(button3);
+            Controls.Add(lenearGoButton);
             Controls.Add(goBinaryButton);
-            Controls.Add(textBox3);
+            Controls.Add(linearInputBox);
             Controls.Add(binaryInputBox);
             Controls.Add(radioButton5);
             Controls.Add(radioButton4);
@@ -352,9 +353,9 @@
         private RadioButton radioButton4;
         private RadioButton radioButton5;
         private TextBox binaryInputBox;
-        private TextBox textBox3;
+        private TextBox linearInputBox;
         private Button goBinaryButton;
-        private Button button3;
+        private Button lenearGoButton;
         private Label label6;
         private Label label7;
         private Label label8;

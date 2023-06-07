@@ -62,7 +62,29 @@ namespace DataStructure
             }
         }
 
+        private void lenearGoButton_Click(object sender, EventArgs e)
+        {
+                string target = linearInputBox.Text;
 
+                if (!string.IsNullOrEmpty(target))
+                {
+                    int result = linkedList.LinearSearch(target);
 
-    }
+                    if (result >= 0)
+                    {
+                        string[] values = linkedList.ToArray();
+                        string foundItem = values[result];
+                        richTextBox1.Text = $"{foundItem}";
+                    }
+                    else
+                    {
+                        richTextBox1.Text = "Not found";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid search target.");
+                }
+            }
+        }
 }
