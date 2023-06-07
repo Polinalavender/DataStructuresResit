@@ -1,0 +1,17 @@
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\bin\Debug\net6.0-windows\DataStructure.exe
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\bin\Debug\net6.0-windows\DataStructure.deps.json
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\bin\Debug\net6.0-windows\DataStructure.runtimeconfig.json
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\bin\Debug\net6.0-windows\DataStructure.dll
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\bin\Debug\net6.0-windows\DataStructure.pdb
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.csproj.AssemblyReference.cache
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.Form1.resources
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.csproj.GenerateResource.cache
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.AssemblyInfoInputs.cache
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.AssemblyInfo.cs
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.csproj.CoreCompileInputs.cache
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.dll
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\refint\DataStructure.dll
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.pdb
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.genruntimeconfig.cache
+C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\ref\DataStructure.dll

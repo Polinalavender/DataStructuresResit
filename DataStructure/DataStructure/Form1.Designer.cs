@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            textBox1 = new TextBox();
+            inputBox = new TextBox();
             richTextBox1 = new RichTextBox();
             button1 = new Button();
             label2 = new Label();
             label3 = new Label();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton3 = new RadioButton();
+            HashsetButton = new RadioButton();
+            linkedListButton = new RadioButton();
+            listButton = new RadioButton();
             label4 = new Label();
             label5 = new Label();
             radioButton4 = new RadioButton();
@@ -52,6 +52,7 @@
             label10 = new Label();
             button4 = new Button();
             button6 = new Button();
+            startBox = new Button();
             SuspendLayout();
             // 
             // label1
@@ -66,12 +67,12 @@
             label1.TabIndex = 0;
             label1.Text = "Data Structures ";
             // 
-            // textBox1
+            // inputBox
             // 
-            textBox1.Location = new Point(12, 118);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(259, 27);
-            textBox1.TabIndex = 1;
+            inputBox.Location = new Point(12, 118);
+            inputBox.Name = "inputBox";
+            inputBox.Size = new Size(259, 27);
+            inputBox.TabIndex = 1;
             // 
             // richTextBox1
             // 
@@ -90,6 +91,7 @@
             button1.TabIndex = 4;
             button1.Text = "Add";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += addButton_Click;
             // 
             // label2
             // 
@@ -111,38 +113,38 @@
             label3.TabIndex = 6;
             label3.Text = "Choose data structure:";
             // 
-            // radioButton1
+            // HashsetButton
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(12, 198);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(82, 24);
-            radioButton1.TabIndex = 7;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "Hashset";
-            radioButton1.UseVisualStyleBackColor = true;
+            HashsetButton.AutoSize = true;
+            HashsetButton.Location = new Point(12, 198);
+            HashsetButton.Name = "HashsetButton";
+            HashsetButton.Size = new Size(82, 24);
+            HashsetButton.TabIndex = 7;
+            HashsetButton.TabStop = true;
+            HashsetButton.Text = "Hashset";
+            HashsetButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // linkedListButton
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(135, 198);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(99, 24);
-            radioButton2.TabIndex = 8;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "Linked List";
-            radioButton2.UseVisualStyleBackColor = true;
+            linkedListButton.AutoSize = true;
+            linkedListButton.Location = new Point(135, 198);
+            linkedListButton.Name = "linkedListButton";
+            linkedListButton.Size = new Size(99, 24);
+            linkedListButton.TabIndex = 8;
+            linkedListButton.TabStop = true;
+            linkedListButton.Text = "Linked List";
+            linkedListButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // listButton
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(260, 198);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(52, 24);
-            radioButton3.TabIndex = 9;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "List";
-            radioButton3.UseVisualStyleBackColor = true;
+            listButton.AutoSize = true;
+            listButton.Location = new Point(260, 198);
+            listButton.Name = "listButton";
+            listButton.Size = new Size(52, 24);
+            listButton.TabIndex = 9;
+            listButton.TabStop = true;
+            listButton.Text = "List";
+            listButton.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -285,11 +287,24 @@
             button6.Text = "Asc order";
             button6.UseVisualStyleBackColor = true;
             // 
+            // startBox
+            // 
+            startBox.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            startBox.ForeColor = Color.DarkOrchid;
+            startBox.Location = new Point(283, 409);
+            startBox.Name = "startBox";
+            startBox.Size = new Size(94, 29);
+            startBox.TabIndex = 26;
+            startBox.Text = "Start";
+            startBox.UseVisualStyleBackColor = true;
+            startBox.Click += startBox_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(startBox);
             Controls.Add(button6);
             Controls.Add(button4);
             Controls.Add(label10);
@@ -305,14 +320,14 @@
             Controls.Add(radioButton4);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(radioButton3);
-            Controls.Add(radioButton2);
-            Controls.Add(radioButton1);
+            Controls.Add(listButton);
+            Controls.Add(linkedListButton);
+            Controls.Add(HashsetButton);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(button1);
             Controls.Add(richTextBox1);
-            Controls.Add(textBox1);
+            Controls.Add(inputBox);
             Controls.Add(label1);
             Name = "Form1";
             Text = "Form1";
@@ -323,14 +338,14 @@
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
+        private TextBox inputBox;
         private RichTextBox richTextBox1;
         private Button button1;
         private Label label2;
         private Label label3;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private RadioButton radioButton3;
+        private RadioButton HashsetButton;
+        private RadioButton linkedListButton;
+        private RadioButton listButton;
         private Label label4;
         private Label label5;
         private RadioButton radioButton4;
@@ -346,5 +361,6 @@
         private Label label10;
         private Button button4;
         private Button button6;
+        private Button startBox;
     }
 }
