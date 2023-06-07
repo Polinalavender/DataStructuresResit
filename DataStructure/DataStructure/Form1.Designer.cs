@@ -41,9 +41,9 @@
             label5 = new Label();
             radioButton4 = new RadioButton();
             radioButton5 = new RadioButton();
-            textBox2 = new TextBox();
+            binaryInputBox = new TextBox();
             textBox3 = new TextBox();
-            button2 = new Button();
+            goBinaryButton = new Button();
             button3 = new Button();
             label6 = new Label();
             label7 = new Label();
@@ -189,12 +189,12 @@
             radioButton5.Text = "Bubble Sort";
             radioButton5.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // binaryInputBox
             // 
-            textBox2.Location = new Point(421, 293);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 14;
+            binaryInputBox.Location = new Point(421, 293);
+            binaryInputBox.Name = "binaryInputBox";
+            binaryInputBox.Size = new Size(125, 27);
+            binaryInputBox.TabIndex = 14;
             // 
             // textBox3
             // 
@@ -203,14 +203,15 @@
             textBox3.Size = new Size(125, 27);
             textBox3.TabIndex = 15;
             // 
-            // button2
+            // goBinaryButton
             // 
-            button2.Location = new Point(552, 291);
-            button2.Name = "button2";
-            button2.Size = new Size(41, 29);
-            button2.TabIndex = 16;
-            button2.Text = "go!";
-            button2.UseVisualStyleBackColor = true;
+            goBinaryButton.Location = new Point(552, 291);
+            goBinaryButton.Name = "goBinaryButton";
+            goBinaryButton.Size = new Size(41, 29);
+            goBinaryButton.TabIndex = 16;
+            goBinaryButton.Text = "go!";
+            goBinaryButton.UseVisualStyleBackColor = true;
+            goBinaryButton.Click += goBinaryButton_Click;
             // 
             // button3
             // 
@@ -313,9 +314,9 @@
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(button3);
-            Controls.Add(button2);
+            Controls.Add(goBinaryButton);
             Controls.Add(textBox3);
-            Controls.Add(textBox2);
+            Controls.Add(binaryInputBox);
             Controls.Add(radioButton5);
             Controls.Add(radioButton4);
             Controls.Add(label5);
@@ -350,9 +351,9 @@
         private Label label5;
         private RadioButton radioButton4;
         private RadioButton radioButton5;
-        private TextBox textBox2;
+        private TextBox binaryInputBox;
         private TextBox textBox3;
-        private Button button2;
+        private Button goBinaryButton;
         private Button button3;
         private Label label6;
         private Label label7;

@@ -36,5 +36,33 @@ namespace DataStructure
                 richTextBox1.Text = string.Empty;
             }
         }
+
+        private void goBinaryButton_Click(object sender, EventArgs e)
+        {
+            string target = binaryInputBox.Text;
+
+            if (!string.IsNullOrEmpty(target))
+            {
+                int result = linkedList.BinarySearch(target);
+
+                if (result >= 0)
+                {
+                    string[] values = linkedList.ToArray();
+                    string foundItem = values[result];
+                    richTextBox1.Text = $"{foundItem}";
+                }
+                else
+                {
+                    richTextBox1.Text = "Not found";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid input");
+            }
+        }
+
+
+
     }
 }

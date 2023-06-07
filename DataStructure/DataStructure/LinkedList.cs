@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataStructure
 {
-        public class LinkedList<T>
-        {
-
-        private class Node<T>
+    public class LinkedList<T>
+    {
+        private class Node
         {
             public T Value { get; }
-            public Node<T> Next { get; set; }
+            public Node Next { get; set; }
 
             public Node(T value)
             {
@@ -21,124 +16,149 @@ namespace DataStructure
             }
         }
 
-        private Node<T> head;
-            private Node<T> end;
+        private Node head;
+        private Node end;
+        public int numberOfElements { get; private set; }
 
-            public int numberOfElements { get; private set; }
-
-            public LinkedList()
-            {
-                head = null;
-                end = null;
-                numberOfElements = 0;
-            }
-
-            public void AddFirst(T value)
-            {
-                Node<T> newNode = new Node<T>(value);
-
-                if (head == null)
-                {
-                    head = newNode;
-                    end = newNode;
-                }
-                else
-                {
-                    newNode.Next = head;
-                    head = newNode;
-                }
-
-                numberOfElements++;
-            }
-
-            public void AddLast(T value) //for specified value at the end 
+        public LinkedList()
         {
-                Node<T> newNode = new Node<T>(value);
+            head = null;
+            end = null;
+            numberOfElements = 0;
+        }
 
-                if (end == null)
-                {
-                    head = newNode;
-                    end = newNode;
-                }
-                else
-                {
-                    end.Next = newNode;
-                    end = newNode;
-                }
+        public void AddFirst(T value)
+        {
+            Node newNode = new Node(value);
 
-                numberOfElements++;
+            if (head == null)
+            {
+                head = newNode;
+                end = newNode;
+            }
+            else
+            {
+                newNode.Next = head;
+                head = newNode;
             }
 
-            public bool Remove(T value)
+            numberOfElements++;
+        }
+
+        public void AddLast(T value)
+        {
+            Node newNode = new Node(value);
+
+            if (end == null)
             {
+                head = newNode;
+                end = newNode;
+            }
+            else
+            {
+                end.Next = newNode;
+                end = newNode;
+            }
+
+            numberOfElements++;
+        }
+
+        public bool Remove(T value)
+        {
+            if (head == null)
+            {
+                return false;
+            }
+
+            if (head.Value.Equals(value))
+            {
+                head = head.Next;
                 if (head == null)
                 {
-                    return false;
+                    end = null;
                 }
+                numberOfElements--;
+                return true;
+            }
 
-                if (head.Value.Equals(value))
+            Node current = head;
+            while (current.Next != null)
+            {
+                if (current.Next.Value.Equals(value))
                 {
-                    head = head.Next;
-                    if (head == null)
+                    current.Next = current.Next.Next;
+                    if (current.Next == null)
                     {
-                        end = null;
+                        end = current;
                     }
                     numberOfElements--;
                     return true;
                 }
-
-                Node<T> current = head;
-                while (current.Next != null)
-                {
-                    if (current.Next.Value.Equals(value))
-                    {
-                        current.Next = current.Next.Next;
-                        if (current.Next == null)
-                        {
-                            end = current;
-                        }
-                        numberOfElements--;
-                        return true;
-                    }
-                    current = current.Next;
-                }
-
-                return false;
+                current = current.Next;
             }
 
-            public bool isspecifiedValue(T value)
-            {
-                Node<T> current = head;
-                while (current != null)
-                {
-                    if (current.Value.Equals(value))
-                    {
-                        return true;
-                    }
-                    current = current.Next;
-                }
-                return false;
-            }
-
-            public void Clear() //resetting
-            {
-                head = null;
-                end = null;
-                numberOfElements = 0;
-            }
-
-            public T[] ToArray()
-            {
-                T[] array = new T[numberOfElements];
-                Node<T> current = head;
-                int index = 0;
-                while (current != null)
-                {
-                    array[index++] = current.Value;
-                    current = current.Next;
-                }
-                return array;
-            }
-
+            return false;
         }
+
+        public bool Contains(T value)
+        {
+            Node current = head;
+            while (current != null)
+            {
+                if (current.Value.Equals(value))
+                {
+                    return true;
+                }
+                current = current.Next;
+            }
+            return false;
+        }
+
+        public void Clear()
+        {
+            head = null;
+            end = null;
+            numberOfElements = 0;
+        }
+
+        public T[] ToArray()
+        {
+            T[] array = new T[numberOfElements];
+            Node current = head;
+            int index = 0;
+            while (current != null)
+            {
+                array[index++] = current.Value;
+                current = current.Next;
+            }
+            return array;
+        }
+        public int BinarySearch(T value)
+        {
+            T[] array = ToArray();
+            int left = 0;
+            int right = array.Length - 1;
+
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+
+                if (EqualityComparer<T>.Default.Equals(array[mid], value))
+                {
+                    return mid;
+                }
+                else if (Comparer<T>.Default.Compare(array[mid], value) < 0)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+
+            return -1; // Value not found
+        }
+
+    }
 }
