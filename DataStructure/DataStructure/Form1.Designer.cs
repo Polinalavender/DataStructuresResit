@@ -138,10 +138,10 @@
             radioButton3.AutoSize = true;
             radioButton3.Location = new Point(260, 198);
             radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(87, 24);
+            radioButton3.Size = new Size(52, 24);
             radioButton3.TabIndex = 9;
             radioButton3.TabStop = true;
-            radioButton3.Text = "ArrayList";
+            radioButton3.Text = "List";
             radioButton3.UseVisualStyleBackColor = true;
             // 
             // label4
@@ -269,7 +269,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(283, 409);
+            button4.Location = new Point(118, 409);
             button4.Name = "button4";
             button4.Size = new Size(94, 29);
             button4.TabIndex = 23;
@@ -278,7 +278,7 @@
             // 
             // button6
             // 
-            button6.Location = new Point(70, 409);
+            button6.Location = new Point(12, 409);
             button6.Name = "button6";
             button6.Size = new Size(100, 29);
             button6.TabIndex = 25;
