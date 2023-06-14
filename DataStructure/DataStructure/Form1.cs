@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 
 namespace DataStructure
@@ -89,7 +90,23 @@ namespace DataStructure
 
         private void bucketSortButton_CheckedChanged(object sender, EventArgs e)
         {
-            
+            if (bucketSortButton.Checked)
+            {
+
+                linkedList.BucketSort();
+                DisplayResults();
+            }
         }
+        private void DisplayResults()
+        {
+            richTextBox1.Clear();
+
+            string[] sortedArray = linkedList.ToArray();
+            foreach (string value in sortedArray)
+            {
+                richTextBox1.AppendText(value + Environment.NewLine);
+            }
+        }
+
     }
 }

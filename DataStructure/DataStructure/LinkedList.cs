@@ -182,5 +182,94 @@ namespace DataStructure
 
         //Bucket Sort -----------------------------------------------------//
 
+        public void BucketSort()
+        {
+            if (numberOfElements <= 1)
+            {
+                return;
+            }
+
+            // min and max values 
+            T minValue = head.Value;
+            T maxValue = head.Value;
+
+            Node current = head;
+            while (current != null)
+            {
+                if (Comparer<T>.Default.Compare(current.Value, minValue) < 0)
+                {
+                    minValue = current.Value;
+                }
+                if (Comparer<T>.Default.Compare(current.Value, maxValue) > 0)
+                {
+                    maxValue = current.Value;
+                }
+                current = current.Next;
+            }
+
+           
+            int bucketAmount = numberOfElements / 2;
+            if (bucketAmount <= 1)
+            {
+                bucketAmount = 2;
+            }
+            List<Node>[] buckets = new List<Node>[bucketAmount];
+            for (int i = 0; i < bucketAmount; i++)
+            {
+                buckets[i] = new List<Node>();
+            }
+            current = head;
+            while (current != null)
+            {
+                int bucketIndex = GetBucketIndex(current.Value, minValue, maxValue, bucketAmount);
+                buckets[bucketIndex].Add(current);
+                current = current.Next;
+            }
+
+            // Sorting
+            head = null;
+            end = null;
+            for (int i = 0; i < bucketAmount; i++)
+            {
+                List<Node> bucket = buckets[i];
+                if (bucket.Count > 0)
+                {
+                    bucket.Sort((a, b) => Comparer<T>.Default.Compare(a.Value, b.Value));
+
+                    if (head == null)
+                    {
+                        head = bucket[0];
+                        end = bucket[bucket.Count - 1];
+                    }
+                    else
+                    {
+                        end.Next = bucket[0];
+                        end = bucket[bucket.Count - 1];
+                    }
+
+                    for (int j = 0; j < bucket.Count - 1; j++)
+                    {
+                        bucket[j].Next = bucket[j + 1];
+                    }
+                }
+            }
+
+            end.Next = null;
+        }
+
+        private int GetBucketIndex(T value, T minValue, T maxValue, int bucketCount)
+        {
+            int index = Convert.ToInt32(Math.Floor(Convert.ToDouble(bucketCount) * (Comparer<T>.Default.Compare(value, minValue) - Comparer<T>.Default.Compare(maxValue, minValue)) / (Comparer<T>.Default.Compare(maxValue, minValue) - Comparer<T>.Default.Compare(minValue, maxValue))));
+            if (index >= bucketCount)
+            {
+                index = bucketCount - 1;
+            }
+            else if (index < 0)
+            {
+                index = 0;
+            }
+            return index;
+        }
+
     }
 }
