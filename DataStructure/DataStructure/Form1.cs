@@ -89,16 +89,7 @@ namespace DataStructure
 
         private void bucketSortButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (bucketSortButton.Checked)
-            {
-                linkedList.BucketSort();
-                string[] values = linkedList.ToArray();
-                richTextBox1.Text = string.Join(Environment.NewLine, values);
-            }
-            else
-            {
-                MessageBox.Show("Please select the Bucket Sort option.");
-            }
+            
         }
     }
 }
