@@ -271,5 +271,52 @@ namespace DataStructure
             return index;
         }
 
+        // Bubbble sort -------------------------------------------------------//
+
+        public void BubbleSort()
+        {
+            if (numberOfElements <= 1)
+            {
+                return;
+            }
+
+            bool swapped;
+            do
+            {
+                swapped = false;
+                Node current = head;
+                Node previous = null;
+                Node nextNode = current.Next;
+
+                while (nextNode != null)
+                {
+                    if (Comparer<T>.Default.Compare(current.Value, nextNode.Value) > 0)
+                    {
+                        // Swapping
+                        if (previous != null)
+                        {
+                            previous.Next = nextNode;
+                        }
+                        else
+                        {
+                            head = nextNode;
+                        }
+
+                        current.Next = nextNode.Next;
+                        nextNode.Next = current;
+                        previous = nextNode;
+                        nextNode = current.Next;
+
+                        swapped = true;
+                    }
+                    else
+                    {
+                        previous = current;
+                        current = nextNode;
+                        nextNode = nextNode.Next;
+                    }
+                }
+            } while (swapped);
+        }
     }
 }

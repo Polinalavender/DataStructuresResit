@@ -40,7 +40,7 @@
             label4 = new Label();
             label5 = new Label();
             bucketSortButton = new RadioButton();
-            radioButton5 = new RadioButton();
+            bubbleSortButton = new RadioButton();
             binaryInputBox = new TextBox();
             linearInputBox = new TextBox();
             goBinaryButton = new Button();
@@ -179,16 +179,17 @@
             bucketSortButton.UseVisualStyleBackColor = true;
             bucketSortButton.CheckedChanged += bucketSortButton_CheckedChanged;
             // 
-            // radioButton5
+            // bubbleSortButton
             // 
-            radioButton5.AutoSize = true;
-            radioButton5.Location = new Point(421, 159);
-            radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(108, 24);
-            radioButton5.TabIndex = 13;
-            radioButton5.TabStop = true;
-            radioButton5.Text = "Bubble Sort";
-            radioButton5.UseVisualStyleBackColor = true;
+            bubbleSortButton.AutoSize = true;
+            bubbleSortButton.Location = new Point(421, 159);
+            bubbleSortButton.Name = "bubbleSortButton";
+            bubbleSortButton.Size = new Size(108, 24);
+            bubbleSortButton.TabIndex = 13;
+            bubbleSortButton.TabStop = true;
+            bubbleSortButton.Text = "Bubble Sort";
+            bubbleSortButton.UseVisualStyleBackColor = true;
+            bubbleSortButton.CheckedChanged += bubbleSortButton_CheckedChanged;
             // 
             // binaryInputBox
             // 
@@ -319,7 +320,7 @@
             Controls.Add(goBinaryButton);
             Controls.Add(linearInputBox);
             Controls.Add(binaryInputBox);
-            Controls.Add(radioButton5);
+            Controls.Add(bubbleSortButton);
             Controls.Add(bucketSortButton);
             Controls.Add(label5);
             Controls.Add(label4);
@@ -352,7 +353,7 @@
         private Label label4;
         private Label label5;
         private RadioButton bucketSortButton;
-        private RadioButton radioButton5;
+        private RadioButton bubbleSortButton;
         private TextBox binaryInputBox;
         private TextBox linearInputBox;
         private Button goBinaryButton;

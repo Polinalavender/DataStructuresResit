@@ -108,5 +108,14 @@ namespace DataStructure
             }
         }
 
+        private void bubbleSortButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (bubbleSortButton.Checked)
+            {
+
+                linkedList.BucketSort();
+                DisplayResults();
+            }
+        }
     }
 }
