@@ -117,5 +117,27 @@ namespace DataStructure
                 DisplayResults();
             }
         }
+
+        private void AscOrder_Click(object sender, EventArgs e)
+        {
+            linkedList.BubbleSort();
+
+            Updating(linkedList.ToArray());
+        }
+
+        private void Updating<T>(T[] array)
+        {
+            richTextBox1.Clear();
+            foreach (var item in array)
+            {
+                richTextBox1.AppendText(item.ToString());
+                richTextBox1.AppendText(Environment.NewLine);
+            }
+        }
+
+         private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

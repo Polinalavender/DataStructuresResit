@@ -51,7 +51,7 @@
             label9 = new Label();
             label10 = new Label();
             button4 = new Button();
-            button6 = new Button();
+            AscOrder = new Button();
             startBox = new Button();
             SuspendLayout();
             // 
@@ -281,15 +281,17 @@
             button4.TabIndex = 23;
             button4.Text = "Desc order";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
-            // button6
+            // AscOrder
             // 
-            button6.Location = new Point(12, 409);
-            button6.Name = "button6";
-            button6.Size = new Size(100, 29);
-            button6.TabIndex = 25;
-            button6.Text = "Asc order";
-            button6.UseVisualStyleBackColor = true;
+            AscOrder.Location = new Point(12, 409);
+            AscOrder.Name = "AscOrder";
+            AscOrder.Size = new Size(100, 29);
+            AscOrder.TabIndex = 25;
+            AscOrder.Text = "Asc order";
+            AscOrder.UseVisualStyleBackColor = true;
+            AscOrder.Click += AscOrder_Click;
             // 
             // startBox
             // 
@@ -309,7 +311,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(startBox);
-            Controls.Add(button6);
+            Controls.Add(AscOrder);
             Controls.Add(button4);
             Controls.Add(label10);
             Controls.Add(label9);
@@ -364,7 +366,7 @@
         private Label label9;
         private Label label10;
         private Button button4;
-        private Button button6;
+        private Button AscOrder;
         private Button startBox;
     }
 }
