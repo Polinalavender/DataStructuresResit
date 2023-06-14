@@ -15,3 +15,13 @@ C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStr
 C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.pdb
 C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.genruntimeconfig.cache
 C:\Users\Leenlaptop 1\Documents\GitHub\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\ref\DataStructure.dll
+D:\School\University\Year 2\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.csproj.AssemblyReference.cache
+D:\School\University\Year 2\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.Form1.resources
+D:\School\University\Year 2\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.csproj.GenerateResource.cache
+D:\School\University\Year 2\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\School\University\Year 2\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.AssemblyInfoInputs.cache
+D:\School\University\Year 2\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.AssemblyInfo.cs
+D:\School\University\Year 2\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.csproj.CoreCompileInputs.cache
+D:\School\University\Year 2\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.dll
+D:\School\University\Year 2\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\refint\DataStructure.dll
+D:\School\University\Year 2\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.pdb

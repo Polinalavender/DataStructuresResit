@@ -10,10 +10,12 @@ namespace DataStructure
     {
 
         private LinkedList<string> linkedList;
+        private List<string> list;
         public Form1()
         {
             InitializeComponent();
             linkedList = new LinkedList<string>();
+            list = new List<string>();
 
         }
 
@@ -30,6 +32,11 @@ namespace DataStructure
             if (linkedListButton.Checked)
             {
                 string[] values = linkedList.ToArray();
+                richTextBox1.Text = string.Join(Environment.NewLine, values);
+            }
+            else if (listButton.Checked) 
+            {
+                string[] values = List.ToArray();
                 richTextBox1.Text = string.Join(Environment.NewLine, values);
             }
             else
@@ -101,10 +108,20 @@ namespace DataStructure
         {
             richTextBox1.Clear();
 
-            string[] sortedArray = linkedList.ToArray();
-            foreach (string value in sortedArray)
+            if (linkedListButton.Checked)
             {
-                richTextBox1.AppendText(value + Environment.NewLine);
+                string[] sortedArray = linkedList.ToArray();
+                foreach (string value in sortedArray)
+                {
+                    richTextBox1.AppendText(value + Environment.NewLine);
+                }
+            } else if (listButton.Checked)
+            {
+                string[] arrayList = List.ToArray();
+                foreach (string value in arrayList)
+                {
+                    richTextBox1.AppendText(value + Environment.NewLine);
+                }
             }
         }
 
