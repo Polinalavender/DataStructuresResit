@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 
 
 namespace DataStructure
@@ -29,14 +30,32 @@ namespace DataStructure
         {
             if (linkedListButton.Checked)
             {
+                string input = inputBox.Text;
+                linkedList.AddLast(input);
+                inputBox.Text = string.Empty;
+
                 string[] values = linkedList.ToArray();
                 richTextBox1.Text = string.Join(Environment.NewLine, values);
             }
+            else if (HashsetButton.Checked)
+            {
+                // add data to data structure 
+            }
+            else if (linkedListButton.Checked)
+            {
+               //
+            }
+            else if (listButton.Checked)
+            {
+                // 
+            }
             else
             {
-                richTextBox1.Text = string.Empty;
+                MessageBox.Show("Please select a data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
         }
+
 
         private void goBinaryButton_Click(object sender, EventArgs e)
         {
@@ -120,10 +139,28 @@ namespace DataStructure
 
         private void AscOrder_Click(object sender, EventArgs e)
         {
-            linkedList.BubbleSort();
+            if (!linkedListButton.Checked && !HashsetButton.Checked && !linkedListButton.Checked && !listButton.Checked)
+            {
+                MessageBox.Show("Please select a data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            Updating(linkedList.ToArray());
+            if (linkedListButton.Checked)
+            {
+                linkedList.BubbleSort();
+                Updating(linkedList.ToArray());
+            }
+            else if (HashsetButton.Checked)
+            {
+                //
+            }
+            
+            else if (listButton.Checked)
+            {
+                //
+            }
         }
+
 
         private void Updating<T>(T[] array)
         {
