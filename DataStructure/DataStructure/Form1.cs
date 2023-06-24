@@ -36,7 +36,7 @@ namespace DataStructure
             }
             else if (listButton.Checked) 
             {
-                string[] values = List.ToArray();
+                string[] values = list.ToArray();
                 richTextBox1.Text = string.Join(Environment.NewLine, values);
             }
             else
@@ -117,7 +117,7 @@ namespace DataStructure
                 }
             } else if (listButton.Checked)
             {
-                string[] arrayList = List.ToArray();
+                string[] arrayList = list.ToArray();
                 foreach (string value in arrayList)
                 {
                     richTextBox1.AppendText(value + Environment.NewLine);

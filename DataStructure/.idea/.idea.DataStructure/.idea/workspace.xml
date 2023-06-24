@@ -8,13 +8,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c8a839c-a517-4573-a01e-06ba8c95e1b3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DataStructure/obj/DataStructure.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/obj/DataStructure.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure/obj/DataStructure.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/obj/DataStructure.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure/obj/Debug/net6.0-windows/DataStructure.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/obj/Debug/net6.0-windows/DataStructure.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure/obj/Debug/net6.0-windows/DataStructure.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/obj/Debug/net6.0-windows/DataStructure.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure/obj/Debug/net6.0-windows/DataStructure.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/obj/Debug/net6.0-windows/DataStructure.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DataStructure/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataStructure/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/DataStructure/DesignTimeBuild/.dtbcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/DataStructure/DesignTimeBuild/.dtbcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/DataStructure/FileContentIndex/115f337b-ec97-494b-aafa-7e663a188ab7.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/DataStructure/FileContentIndex/215aa6a8-1681-45ce-b62a-7fd585be7d67.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/DataStructure/FileContentIndex/239b2e17-2e6e-4df6-88b5-0f4089b8e7cc.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/DataStructure/FileContentIndex/39fefaed-9cc8-4add-9b97-a2806561a378.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/DataStructure/FileContentIndex/c0ab4c74-0518-4eb4-9215-ad2cc5d93678.vsidx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/DataStructure/v17/.futdcache.v2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/DataStructure/v17/.futdcache.v2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/DataStructure/v17/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/DataStructure/v17/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/Form1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure/List.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure/List.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +38,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "List",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -78,6 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1686501052967</updated>
       <workItem from="1686501063466" duration="721000" />
+      <workItem from="1687107523007" duration="1367000" />
     </task>
     <servers />
   </component>
