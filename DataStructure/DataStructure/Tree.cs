@@ -145,9 +145,9 @@ namespace DataStructure
 
     public class BubbleSort<T>
     {
-        public void Sort(List<T> list)
+        public void Sort(TreeNode<T> root)
         {
-            int n = list.Count;
+            int n = root.Size();
             bool swapped;
 
             for (int i = 0; i < n - 1; i++)
@@ -156,17 +156,17 @@ namespace DataStructure
 
                 for (int j = 0; j < n - i - 1; j++)
                 {
-                    if (Comparer<T>.Default.Compare(list[j], list[j + 1]) > 0)
+                    if (Comparer<T>.Default.Compare(root.GetValueAt(j), root.GetValueAt(j + 1)) > 0)
                     {
-                        // Swap list[j] and list[j + 1]
-                        T temp = list[j];
-                        list[j] = list[j + 1];
-                        list[j + 1] = temp;
+                        // Swap values in tree nodes
+                        T temp = root.GetValueAt(j);
+                        root.SetValueAt(j, root.GetValueAt(j + 1));
+                        root.SetValueAt(j + 1, temp);
                         swapped = true;
                     }
                 }
 
-                // If no two elements were swapped in the inner loop, then the list is already sorted
+                // If no two elements were swapped in the inner loop, then the tree is already sorted
                 if (!swapped)
                     break;
             }
@@ -175,11 +175,11 @@ namespace DataStructure
 
     public class LinearSearch<T>
     {
-        public int Search(List<T> list, T value)
+        public int Search(TreeNode<T> root, T value)
         {
-            for (int i = 0; i < list.Count; i++)
+            for (int i = 0; i < root.Size(); i++)
             {
-                if (EqualityComparer<T>.Default.Equals(list[i], value))
+                if (EqualityComparer<T>.Default.Equals(root.GetValueAt(i), value))
                     return i;
             }
 
@@ -187,81 +187,99 @@ namespace DataStructure
         }
     }
 
-
     public class BucketSort<T>
     {
-        public void Sort(List<T> list)
+        public void Sort(TreeNode<T> root)
         {
-            int n = list.Count;
+            int n = root.Size();
 
             if (n == 0)
                 return;
 
-            // Find the minimum and maximum values in the list
-            T minValue = list[0];
-            T maxValue = list[0];
-
-            for (int i = 1; i < n; i++)
-            {
-                if (Comparer<T>.Default.Compare(list[i], minValue) < 0)
-                    minValue = list[i];
-
-                if (Comparer<T>.Default.Compare(list[i], maxValue) > 0)
-                    maxValue = list[i];
-            }
+            // Find the minimum and maximum values in the tree
+            T minValue = root.GetMinValue();
+            T maxValue = root.GetMaxValue();
 
             // Create buckets
             int bucketCount = Convert.ToInt32(maxValue) - Convert.ToInt32(minValue) + 1;
-            List<List<T>> buckets = new List<List<T>>(bucketCount);
+            List<TreeNode<T>> buckets = new List<TreeNode<T>>(bucketCount);
 
             for (int i = 0; i < bucketCount; i++)
-                buckets.Add(new List<T>());
+                buckets.Add(new TreeNode<T>());
 
             // Distribute elements into buckets
             for (int i = 0; i < n; i++)
             {
-                int bucketIndex = Convert.ToInt32(list[i]) - Convert.ToInt32(minValue);
-                buckets[bucketIndex].Add(list[i]);
+                int bucketIndex = Convert.ToInt32(root.GetValueAt(i)) - Convert.ToInt32(minValue);
+                buckets[bucketIndex].AddValue(root.GetValueAt(i));
             }
 
             // Sort each bucket individually
             for (int i = 0; i < bucketCount; i++)
             {
-                if (buckets[i].Count > 1)
+                if (buckets[i].Size() > 1)
                 {
-                    InsertionSort(buckets[i]);
+                    BubbleSort<T> bubbleSort = new BubbleSort<T>();
+                    bubbleSort.Sort(buckets[i]);
                 }
             }
 
             // Concatenate buckets
-            int index = 0;
+            root.Clear();
+
             for (int i = 0; i < bucketCount; i++)
             {
-                for (int j = 0; j < buckets[i].Count; j++)
+                for (int j = 0; j < buckets[i].Size(); j++)
                 {
-                    list[index++] = buckets[i][j];
+                    root.AddValue(buckets[i].GetValueAt(j));
                 }
             }
         }
-
-        private void InsertionSort(List<T> list)
-        {
-            int n = list.Count;
-
-            for (int i = 1; i < n; i++)
-            {
-                T key = list[i];
-                int j = i - 1;
-
-                while (j >= 0 && Comparer<T>.Default.Compare(list[j], key) > 0)
-                {
-                    list[j + 1] = list[j];
-                    j = j - 1;
-                }
-
-                list[j + 1] = key;
-            }
-        }
-
     }
+
+    public class TreeNode<T>
+    {
+        private List<T> values;
+
+        public TreeNode()
+        {
+            values = new List<T>();
+        }
+
+        public int Size()
+        {
+            return values.Count;
+        }
+
+        public T GetValueAt(int index)
+        {
+            return values[index];
+        }
+
+        public void SetValueAt(int index, T value)
+        {
+            values[index] = value;
+        }
+
+        public void AddValue(T value)
+        {
+            values.Add(value);
+        }
+
+        public void Clear()
+        {
+            values.Clear();
+        }
+
+        public T GetMinValue()
+        {
+            return values.Min();
+        }
+
+        public T GetMaxValue()
+        {
+            return values.Max();
+        }
+    }
+
 }
