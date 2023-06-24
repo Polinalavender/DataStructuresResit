@@ -173,24 +173,18 @@ namespace DataStructure
         }
     }
 
-    public int LinearSearch(T value)
+    public class LinearSearch<T>
     {
-        return LinearSearchRecursive(Root, value, 0);
-    }
+        public int Search(List<T> list, T value)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (EqualityComparer<T>.Default.Equals(list[i], value))
+                    return i;
+            }
 
-    private int LinearSearchRecursive(TreeNode<T> node, T value, int index)
-    {
-        if (node == null)
-            return -1;
-
-        if (EqualityComparer<T>.Default.Equals(node.Data, value))
-            return index;
-
-        int result = LinearSearchRecursive(node.Left, value, index + 1);
-        if (result == -1)
-            result = LinearSearchRecursive(node.Right, value, index + 1);
-
-        return result;
+            return -1; // Value not found
+        }
     }
 
 
