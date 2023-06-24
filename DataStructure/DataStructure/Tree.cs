@@ -3,293 +3,174 @@ using System.Collections.Generic;
 
 namespace DataStructure
 {
-    public class TreeNode<T>
+    public class Tree<T> where T : IComparable<T>
     {
-        public T Data { get; set; }
-        public TreeNode<T> Left { get; set; }
-        public TreeNode<T> Right { get; set; }
 
-        private T[] values;
-
-        public TreeNode(T data)
+        // Tree Data Structure
+        private class TreeNode<T>
         {
-            Data = data;
-            Left = null;
-            Right = null;
-            values = new T[8];
-        }
+            public T Value { get; set; }
+            public TreeNode<T> Left { get; set; }
+            public TreeNode<T> Right { get; set; }
 
-        public int Size()
-        {
-            return values.Length;
-        }
-
-        public T GetValueAt(int index)
-        {
-            return values[index];
-        }
-
-        public void SetValueAt(int index, T value)
-        {
-            values[index] = value;
-        }
-
-        public void AddValue(T value)
-        {
-
-        }
-
-        public void Clear()
-        {
-
-        }
-
-        public T GetMinValue()
-        {
-            return values.Min();
-        }
-
-        public T GetMaxValue()
-        {
-            return values.Max();
-        }
-    }
-
-    public class BinaryTree<T>
-    {
-        public TreeNode<T> Root { get; set; }
-
-        public BinaryTree()
-        {
-            Root = null;
-        }
-
-        public void AddLast(T value)
-        {
-            TreeNode<T> newNode = new TreeNode<T>(value);
-
-            if (Root == null)
+            public TreeNode(T value)
             {
-                Root = newNode;
+                Value = value;
+                Left = null;
+                Right = null;
+            }
+        }
+
+        private string[] treeArray;
+
+        public string[] ToArray()
+        {
+            return treeArray;
+        }
+
+        private TreeNode<T> root;
+
+        public Tree()
+        {
+            root = null;
+        }
+
+        public void Insert(T value)
+        {
+            if (root == null)
+            {
+                root = new TreeNode<T>(value);
             }
             else
             {
-                TreeNode<T> current = Root;
-                while (current.Right != null)
+                Insert(root, value);
+            }
+        }
+
+        private void Insert(TreeNode<T> node, T value)
+        {
+            if (value.CompareTo(node.Value) < 0)
+            {
+                if (node.Left == null)
                 {
-                    current = current.Right;
-                }
-                current.Right = newNode;
-            }
-        }
-
-        public T[] ToArray()
-        {
-            List<T> list = new List<T>();
-            TraverseInOrder(Root, list);
-            return list.ToArray();
-        }
-
-        private void TraverseInOrder(TreeNode<T> node, List<T> list)
-        {
-            if (node == null)
-                return;
-
-            TraverseInOrder(node.Left, list);
-            list.Add(node.Data);
-            TraverseInOrder(node.Right, list);
-        }
-
-
-        private TreeNode<T> InsertRecursive(TreeNode<T> current, T data)
-        {
-            if (current == null)
-            {
-                return new TreeNode<T>(data);
-            }
-
-            if (Comparer<T>.Default.Compare(data, current.Data) < 0)
-            {
-                current.Left = InsertRecursive(current.Left, data);
-            }
-            else
-            {
-                current.Right = InsertRecursive(current.Right, data);
-            }
-
-            return current;
-        }
-
-        public void Delete(T data)
-        {
-            Root = DeleteRecursive(Root, data);
-        }
-
-        private TreeNode<T> DeleteRecursive(TreeNode<T> current, T data)
-        {
-            if (current == null)
-            {
-                return null;
-            }
-
-            if (Comparer<T>.Default.Compare(data, current.Data) == 0)
-            {
-                if (current.Left == null && current.Right == null)
-                {
-                    return null;
-                }
-                else if (current.Left == null)
-                {
-                    return current.Right;
-                }
-                else if (current.Right == null)
-                {
-                    return current.Left;
+                    node.Left = new TreeNode<T>(value);
                 }
                 else
                 {
-                    var successor = FindMinimum(current.Right);
-                    current.Data = successor.Data;
-                    current.Right = DeleteRecursive(current.Right, successor.Data);
+                    Insert(node.Left, value);
                 }
-            }
-            else if (Comparer<T>.Default.Compare(data, current.Data) < 0)
-            {
-                current.Left = DeleteRecursive(current.Left, data);
             }
             else
             {
-                current.Right = DeleteRecursive(current.Right, data);
+                if (node.Right == null)
+                {
+                    node.Right = new TreeNode<T>(value);
+                }
+                else
+                {
+                    Insert(node.Right, value);
+                }
             }
-
-            return current;
         }
 
-        private TreeNode<T> FindMinimum(TreeNode<T> current)
+        // Binary Search Algorithm
+        public static int BinarySearch<T>(T[] arr, T value) where T : IComparable<T>
         {
-            while (current.Left != null)
+            int left = 0;
+            int right = arr.Length - 1;
+
+            while (left <= right)
             {
-                current = current.Left;
+                int mid = (left + right) / 2;
+                int cmp = value.CompareTo(arr[mid]);
+
+                if (cmp == 0)
+                {
+                    return mid;
+                }
+                else if (cmp < 0)
+                {
+                    right = mid - 1;
+                }
+                else
+                {
+                    left = mid + 1;
+                }
             }
 
-            return current;
+            return -1;
         }
 
-        public void Clear()
+        // Bubble Sort Algorithm
+        public void BubbleSort(T[] arr)
         {
-            Root = null;
-        }
-    }
+            if (arr == null)
+            {
+                throw new ArgumentNullException(nameof(arr));
+            }
 
-    public class BubbleSort<T>
-    {
-        public void Sort(TreeNode<T> root)
-        {
-            int n = root.Size();
+            int n = arr.Length;
             bool swapped;
 
             for (int i = 0; i < n - 1; i++)
             {
                 swapped = false;
-
                 for (int j = 0; j < n - i - 1; j++)
                 {
-                    if (Comparer<T>.Default.Compare(root.GetValueAt(j), root.GetValueAt(j + 1)) > 0)
+                    if (arr[j].CompareTo(arr[j + 1]) > 0)
                     {
-                        // Swap values in tree nodes
-                        T temp = root.GetValueAt(j);
-                        root.SetValueAt(j, root.GetValueAt(j + 1));
-                        root.SetValueAt(j + 1, temp);
+                        T temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
                         swapped = true;
                     }
                 }
 
                 if (!swapped)
+                {
                     break;
+                }
             }
         }
-    }
 
-    public class LinearSearch<T>
-    {
-        public int Search(TreeNode<T> root, T value)
+        // Bucket Sort Algorithm
+        public static void BucketSort(int[] arr, int maxVal)
         {
-            for (int i = 0; i < root.Size(); i++)
+            int[] bucket = new int[maxVal + 1];
+
+            for (int i = 0; i < arr.Length; i++)
             {
-                if (EqualityComparer<T>.Default.Equals(root.GetValueAt(i), value))
+                bucket[arr[i]]++;
+            }
+
+            int k = 0;
+
+            for (int i = 0; i < bucket.Length; i++)
+            {
+                for (int j = 0; j < bucket[i]; j++)
+                {
+                    arr[k++] = i;
+                }
+            }
+        }
+
+        // Linear Search Algorithm
+        public static int LinearSearch<T>(T[] arr, T value) where T : IComparable<T>
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i].CompareTo(value) == 0)
+                {
                     return i;
+                }
             }
 
             return -1;
         }
-    }
 
-    public class BucketSort<T>
-    {
-        public void Sort(BinaryTree<T> tree)
+        internal void BubbleSort()
         {
-            List<T> bucket = new List<T>();
-            InorderTraversal(tree.Root, bucket);
-
-            int index = 0;
-            UpdateTree(tree.Root, bucket, ref index);
-        }
-
-
-        private int UpdateTree(TreeNode<T> node, List<T> bucket, ref int index)
-        {
-            if (node == null)
-                return index;
-
-            index = UpdateTree(node.Left, bucket, ref index);
-            index = UpdateTree(node.Right, bucket, ref index);
-
-            return index;
-        }
-
-        private void InorderTraversal(TreeNode<T> node, List<T> bucket)
-        {
-            if (node == null)
-                return;
-
-            InorderTraversal(node.Left, bucket);
-
-            // Add all the values from the node's array to the bucket
-            for (int i = 0; i < node.Size(); i++)
-            {
-                T value = node.GetValueAt(i);
-                if (value != null)
-                    bucket.Add(value);
-            }
-
-            InorderTraversal(node.Right, bucket);
-        }
-
-        // Example usage
-        static void Main(string[] args)
-        {
-            BinaryTree<int> tree = new BinaryTree<int>();
-            tree.AddLast(8);
-            tree.AddLast(4);
-            tree.AddLast(12);
-            tree.AddLast(2);
-            tree.AddLast(6);
-            tree.AddLast(10);
-            tree.AddLast(14);
-
-            Console.WriteLine("Before sorting:");
-            Console.WriteLine(string.Join(", ", tree.ToArray()));
-            Console.WriteLine();
-
-            // Perform BucketSort on the tree
-            BucketSort<int> sorter = new BucketSort<int>();
-            sorter.Sort(tree);
-
-            Console.WriteLine("After sorting:");
-            Console.WriteLine(string.Join(", ", tree.ToArray()));
+            throw new NotImplementedException();
         }
     }
-
-
-
 }

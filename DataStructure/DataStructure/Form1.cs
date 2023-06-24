@@ -5,7 +5,6 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-
 namespace DataStructure
 {
     public partial class Form1 : Form
@@ -13,12 +12,15 @@ namespace DataStructure
 
         private LinkedList<string> linkedList;
         private List<string> list;
-        private List<string> tree;
+        private Tree<string> tree;
+        private object?[] values;
+
         public Form1()
         {
             InitializeComponent();
             linkedList = new LinkedList<string>();
             list = new List<string>();
+            tree = new Tree<string>();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -34,7 +36,7 @@ namespace DataStructure
             }
             else if (treeButton.Checked)
             {
-                tree.Add(input);
+                tree.Insert(input);
             }
             else
             {
@@ -60,7 +62,12 @@ namespace DataStructure
             }
             else if (treeButton.Checked)
             {
-                // add data to data structure 
+                string input = inputBox.Text;
+                tree.Insert(input);
+                inputBox.Text = string.Empty;
+
+                string[] values = tree.ToArray();
+                richTextBox1.Text = string.Join(Environment.NewLine, values);
             }
             else if (listButton.Checked)
             {
@@ -129,7 +136,6 @@ namespace DataStructure
         {
             if (bucketSortButton.Checked)
             {
-
                 linkedList.BucketSort();
                 DisplayResults();
             }
@@ -170,7 +176,8 @@ namespace DataStructure
             }
             else if (treeButton.Checked)
             {
-                //
+                tree.BubbleSort();
+                Updating(tree.ToArray());
             }
             
             else if (listButton.Checked)
