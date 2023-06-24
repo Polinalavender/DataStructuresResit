@@ -11,17 +11,27 @@ namespace DataStructure
     {
 
         private LinkedList<string> linkedList;
+        private List<string> list;
         public Form1()
         {
             InitializeComponent();
             linkedList = new LinkedList<string>();
-
+            list = new List<string>();
         }
 
         private void addButton_Click(object sender, EventArgs e)
         {
             string input = inputBox.Text;
-            linkedList.AddLast(input);
+            if (linkedListButton.Checked)
+            {
+                linkedList.AddLast(input);
+            } else if (listButton.Checked)
+            {
+                list.Add(input);
+            } else if (HashsetButton.Checked)
+            {
+                return; 
+            }
             inputBox.Text = string.Empty;
         }
 
@@ -41,13 +51,10 @@ namespace DataStructure
             {
                 // add data to data structure 
             }
-            else if (linkedListButton.Checked)
-            {
-               //
-            }
             else if (listButton.Checked)
             {
-                // 
+                string[] values = list.ToArray();
+                richTextBox1.Text = string.Join(Environment.NewLine, values);
             }
             else
             {

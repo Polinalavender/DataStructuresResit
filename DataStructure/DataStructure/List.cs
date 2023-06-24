@@ -173,7 +173,7 @@ namespace DataStructure
             for (int i = 0; i < bucketCount; i++)
             {
                 bucketSizes[i] = 0;
-                buckets[i] = new T[count]; // tnitialize each bucket with the maximum possible size
+                buckets[i] = new T[count]; // initialize each bucket with the maximum possible size
             }
 
             // assign each element to its respective bucket
