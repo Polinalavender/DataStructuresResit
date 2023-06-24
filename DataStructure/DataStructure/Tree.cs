@@ -9,11 +9,49 @@ namespace DataStructure
         public TreeNode<T> Left { get; set; }
         public TreeNode<T> Right { get; set; }
 
+        private T[] values;
+
         public TreeNode(T data)
         {
             Data = data;
             Left = null;
             Right = null;
+            values = new T[8];
+        }
+
+        public int Size()
+        {
+            return values.Length;
+        }
+
+        public T GetValueAt(int index)
+        {
+            return values[index];
+        }
+
+        public void SetValueAt(int index, T value)
+        {
+            values[index] = value;
+        }
+
+        public void AddValue(T value)
+        {
+
+        }
+
+        public void Clear()
+        {
+
+        }
+
+        public T GetMinValue()
+        {
+            return values.Min();
+        }
+
+        public T GetMaxValue()
+        {
+            return values.Max();
         }
     }
 
@@ -166,7 +204,6 @@ namespace DataStructure
                     }
                 }
 
-                // If no two elements were swapped in the inner loop, then the tree is already sorted
                 if (!swapped)
                     break;
             }
@@ -183,103 +220,76 @@ namespace DataStructure
                     return i;
             }
 
-            return -1; 
+            return -1;
         }
     }
 
     public class BucketSort<T>
     {
-        public void Sort(TreeNode<T> root)
+        public void Sort(BinaryTree<T> tree)
         {
-            int n = root.Size();
+            List<T> bucket = new List<T>();
+            InorderTraversal(tree.Root, bucket);
 
-            if (n == 0)
+            int index = 0;
+            UpdateTree(tree.Root, bucket, ref index);
+        }
+
+
+        private int UpdateTree(TreeNode<T> node, List<T> bucket, ref int index)
+        {
+            if (node == null)
+                return index;
+
+            index = UpdateTree(node.Left, bucket, ref index);
+            index = UpdateTree(node.Right, bucket, ref index);
+
+            return index;
+        }
+
+        private void InorderTraversal(TreeNode<T> node, List<T> bucket)
+        {
+            if (node == null)
                 return;
 
-            // Find the minimum and maximum values in the tree
-            T minValue = root.GetMinValue();
-            T maxValue = root.GetMaxValue();
+            InorderTraversal(node.Left, bucket);
 
-            // Create buckets
-            int bucketCount = Convert.ToInt32(maxValue) - Convert.ToInt32(minValue) + 1;
-            List<TreeNode<T>> buckets = new List<TreeNode<T>>(bucketCount);
-
-            for (int i = 0; i < bucketCount; i++)
-                buckets.Add(new TreeNode<T>());
-
-            // Distribute elements into buckets
-            for (int i = 0; i < n; i++)
+            // Add all the values from the node's array to the bucket
+            for (int i = 0; i < node.Size(); i++)
             {
-                int bucketIndex = Convert.ToInt32(root.GetValueAt(i)) - Convert.ToInt32(minValue);
-                buckets[bucketIndex].AddValue(root.GetValueAt(i));
+                T value = node.GetValueAt(i);
+                if (value != null)
+                    bucket.Add(value);
             }
 
-            // Sort each bucket individually
-            for (int i = 0; i < bucketCount; i++)
-            {
-                if (buckets[i].Size() > 1)
-                {
-                    BubbleSort<T> bubbleSort = new BubbleSort<T>();
-                    bubbleSort.Sort(buckets[i]);
-                }
-            }
+            InorderTraversal(node.Right, bucket);
+        }
 
-            // Concatenate buckets
-            root.Clear();
+        // Example usage
+        static void Main(string[] args)
+        {
+            BinaryTree<int> tree = new BinaryTree<int>();
+            tree.AddLast(8);
+            tree.AddLast(4);
+            tree.AddLast(12);
+            tree.AddLast(2);
+            tree.AddLast(6);
+            tree.AddLast(10);
+            tree.AddLast(14);
 
-            for (int i = 0; i < bucketCount; i++)
-            {
-                for (int j = 0; j < buckets[i].Size(); j++)
-                {
-                    root.AddValue(buckets[i].GetValueAt(j));
-                }
-            }
+            Console.WriteLine("Before sorting:");
+            Console.WriteLine(string.Join(", ", tree.ToArray()));
+            Console.WriteLine();
+
+            // Perform BucketSort on the tree
+            BucketSort<int> sorter = new BucketSort<int>();
+            sorter.Sort(tree);
+
+            Console.WriteLine("After sorting:");
+            Console.WriteLine(string.Join(", ", tree.ToArray()));
         }
     }
 
-    public class TreeNode<T>
-    {
-        private List<T> values;
 
-        public TreeNode()
-        {
-            values = new List<T>();
-        }
-
-        public int Size()
-        {
-            return values.Count;
-        }
-
-        public T GetValueAt(int index)
-        {
-            return values[index];
-        }
-
-        public void SetValueAt(int index, T value)
-        {
-            values[index] = value;
-        }
-
-        public void AddValue(T value)
-        {
-            values.Add(value);
-        }
-
-        public void Clear()
-        {
-            values.Clear();
-        }
-
-        public T GetMinValue()
-        {
-            return values.Min();
-        }
-
-        public T GetMaxValue()
-        {
-            return values.Max();
-        }
-    }
 
 }
