@@ -13,7 +13,7 @@ namespace DataStructure
         public T element { get; }
         private int count;
 
-        private List()
+        public List()
         {
             data = new T[8];
             count = 0;
@@ -23,7 +23,7 @@ namespace DataStructure
         {
             if (count == data.Length)
             {
-                Array.Resize(ref data, data.Length * 2);
+                Array.Resize(ref data, count + 1); 
             }
 
             data[count++] = element;
@@ -31,13 +31,13 @@ namespace DataStructure
 
         public bool Remove(T element) 
         {
-            int elementIndex = Array.IndexOf(data, element);
+            int elementIndex = Array.IndexOf(data, element); // find the index of the inputted element
 
-            if (elementIndex > 0) 
+            if (elementIndex >= 0) 
             {
-                for (int i = elementIndex; i < count - 1; i++)
+                for (int i = elementIndex + 1; i < count; i++) // loop starting from the elements after elementIndex and move them one postion to the 'left'
                 {
-                    data[i] = data[i + 1];
+                    data[i - 1] = data[i];
                 }
                 count--;
                 return true;
@@ -59,6 +59,28 @@ namespace DataStructure
 
             return array;
         }
-        //public void Clear() { }
+
+        public void Clear()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                data[i] = default; // set each element to its default value
+            }
+
+            count = 0; 
+        }
+
+        public int LinearSearch(T element)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                if (data[i].Equals(element)) {
+                    return i;
+                }
+            }   
+            return -1;
+        }
+
+        
     }
 }
