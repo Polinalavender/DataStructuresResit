@@ -3,6 +3,7 @@ using System;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace DataStructure
@@ -12,6 +13,7 @@ namespace DataStructure
 
         private LinkedList<string> linkedList;
         private List<string> list;
+        private List<string> tree;
         public Form1()
         {
             InitializeComponent();
@@ -25,15 +27,24 @@ namespace DataStructure
             if (linkedListButton.Checked)
             {
                 linkedList.AddLast(input);
-            } else if (listButton.Checked)
+            }
+            else if (listButton.Checked)
             {
                 list.Add(input);
-            } else if (HashsetButton.Checked)
+            }
+            else if (treeButton.Checked)
             {
-                return; 
+                tree.Add(input);
+            }
+            else
+            {
+                MessageBox.Show("Please select a data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             inputBox.Text = string.Empty;
         }
+
+
 
 
         private void startBox_Click(object sender, EventArgs e)
@@ -47,7 +58,7 @@ namespace DataStructure
                 string[] values = linkedList.ToArray();
                 richTextBox1.Text = string.Join(Environment.NewLine, values);
             }
-            else if (HashsetButton.Checked)
+            else if (treeButton.Checked)
             {
                 // add data to data structure 
             }
@@ -146,7 +157,7 @@ namespace DataStructure
 
         private void AscOrder_Click(object sender, EventArgs e)
         {
-            if (!linkedListButton.Checked && !HashsetButton.Checked && !linkedListButton.Checked && !listButton.Checked)
+            if (!linkedListButton.Checked && !treeButton.Checked && !linkedListButton.Checked && !listButton.Checked)
             {
                 MessageBox.Show("Please select a data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -157,7 +168,7 @@ namespace DataStructure
                 linkedList.BubbleSort();
                 Updating(linkedList.ToArray());
             }
-            else if (HashsetButton.Checked)
+            else if (treeButton.Checked)
             {
                 //
             }
