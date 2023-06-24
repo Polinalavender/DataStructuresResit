@@ -44,7 +44,7 @@ namespace DataStructure
             } 
             else
             {
-                throw new IndexOutOfRangeException("Invalid index");
+                return false;
             }
         }
 
@@ -66,15 +66,16 @@ namespace DataStructure
             {
                 data[i] = default; // set each element to its default value
             }
-
-            count = 0; 
+            count = 0;
+            Array.Resize(ref data, 8);
         }
 
         public int LinearSearch(T element)
         {
             for (int i = 0; i < count; i++)
             {
-                if (data[i].Equals(element)) {
+                if (data[i].Equals(element)) 
+                {
                     return i;
                 }
             }   
@@ -83,6 +84,11 @@ namespace DataStructure
 
         public void BubbleSort()
         {
+            if (count <= 1)
+            {
+                return;
+            }
+
             bool swapped;
 
             for (int i = 0; i < count - 1; i++)
@@ -101,9 +107,108 @@ namespace DataStructure
                     }
                 }
 
-                // if no two elements were swapped in the inner loop, then the list is already sorted
-                if (!swapped)
+                if (!swapped) // if no  elements were swapped in the inner loop, then the list is already sorted
+                {
                     break;
+                }
+            }
+        }
+
+        public int BinarySearch(T element) 
+        {
+            if (Comparer<T>.Default.Compare(data[0], data[count - 1]) > 0) // check if list is sorted
+            {
+                BubbleSort(); // if its not the bubble sort it
+            }
+
+            int left = 0;
+            int right = count - 1;
+
+            while (left <= right)
+            {
+                int middle = left + (right - left) / 2;
+                int comparison = Comparer<T>.Default.Compare(data[middle], element);
+
+                if (comparison == 0)
+                {
+                    return middle; // return the element at the middle index of the array
+                }
+                else if (comparison < 0)
+                {
+                    left = middle + 1; // search in the right half
+                }
+                else
+                {
+                    right = middle - 1; // search in the left half
+                }
+            }
+            return -1; 
+        }
+
+        public void BucketSort()
+        {
+            if (count <= 1)
+            {
+                return;
+            }
+
+            // find the minimum and maximum values in the list
+            T min = data[0];
+            T max = data[0];
+            for (int i = 1; i < count; i++)
+            {
+                if (Comparer<T>.Default.Compare(data[i], min) < 0)
+                    min = data[i];
+                if (Comparer<T>.Default.Compare(data[i], max) > 0)
+                    max = data[i];
+            }
+
+            // calculate the range of each bucket
+            int bucketCount = count / 4; 
+            int range = Comparer<T>.Default.Compare(max, min) == 0 ? default : Comparer<T>.Default.Compare(max, min);
+
+            // create and initialize the buckets
+            int[] bucketSizes = new int[bucketCount];
+            T[][] buckets = new T[bucketCount][];
+            for (int i = 0; i < bucketCount; i++)
+            {
+                bucketSizes[i] = 0;
+                buckets[i] = new T[count]; // tnitialize each bucket with the maximum possible size
+            }
+
+            // assign each element to its respective bucket
+            for (int i = 0; i < count; i++)
+            {
+                int bucketIndex = (int)(((dynamic)data[i] - (dynamic)min) / range * (bucketCount - 1)); // calculate the bucket index for the current element
+
+                // resize if necessary
+                if (bucketSizes[bucketIndex] == buckets[bucketIndex].Length)
+                {
+                    Array.Resize(ref buckets[bucketIndex], bucketSizes[bucketIndex] + 1);
+                }
+
+                int bucketSize = bucketSizes[bucketIndex]; // get the current size of the bucket
+                T[] currentBucket = buckets[bucketIndex]; // get the current bucket
+                bucketSizes[bucketIndex] = bucketSize + 1; // increase the bucket size by 1
+                currentBucket[bucketSize] = data[i]; // assign the element to the current bucket
+
+            }
+
+            // sort each bucket individually 
+            for (int i = 0; i < bucketCount; i++)
+            {
+                Array.Resize(ref buckets[i], bucketSizes[i]); // trim the bucket size to the actual number of elements
+                Array.Sort(buckets[i], 0, bucketSizes[i]);
+            }
+
+            // merge the sorted buckets back into the original list
+            int currentIndex = 0;
+            for (int i = 0; i < bucketCount; i++)
+            {
+                for (int j = 0; j < bucketSizes[i]; j++)
+                {
+                    data[currentIndex++] = buckets[i][j]; // add sorted element to the original list
+                }
             }
         }
     }
