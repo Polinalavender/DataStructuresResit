@@ -188,9 +188,35 @@ namespace DataStructure
             return -1;
         }
 
-        internal void BubbleSort()
+        public void BubbleSort()
         {
-            throw new NotImplementedException();
+            if (elements == null)
+            {
+                throw new ArgumentNullException(nameof(elements));
+            }
+
+            int n = elements.Length;
+            bool swapped;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                swapped = false;
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    if (elements[j].CompareTo(elements[j + 1]) > 0)
+                    {
+                        T temp = elements[j];
+                        elements[j] = elements[j + 1];
+                        elements[j + 1] = temp;
+                        swapped = true;
+                    }
+                }
+
+                if (!swapped)
+                {
+                    break;
+                }
+            }
         }
     }
 }

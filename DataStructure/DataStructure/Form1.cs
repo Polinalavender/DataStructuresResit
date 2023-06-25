@@ -203,24 +203,6 @@ namespace DataStructure
             timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
         }
 
-        private void bucketSortButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if (bucketSortButton.Checked)
-            {
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
-
-                if (linkedListButton.Checked)
-                {
-                    linkedList.BucketSort();
-                    DisplayResults();
-                }
-
-                stopwatch.Stop();
-                TimeSpan elapsedTime = stopwatch.Elapsed;
-                timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
-            }
-        }
 
         private void DisplayResults()
         {
@@ -233,24 +215,7 @@ namespace DataStructure
             }
         }
 
-        private void bubbleSortButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if (bubbleSortButton.Checked)
-            {
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
 
-                if (linkedListButton.Checked)
-                {
-                    linkedList.BubbleSort();
-                    DisplayResults();
-                }
-
-                stopwatch.Stop();
-                TimeSpan elapsedTime = stopwatch.Elapsed;
-                timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
-            }
-        }
 
 
         private void AscOrder_Click(object sender, EventArgs e)
@@ -274,10 +239,10 @@ namespace DataStructure
 
             else if (listButton.Checked)
             {
-                //
+                list.BubbleSort();
+                Updating(tree.ToArray());
             }
         }
-
 
         private void Updating<T>(T[] array)
         {
@@ -293,5 +258,6 @@ namespace DataStructure
         {
 
         }
-    }
+
+        }
 }
