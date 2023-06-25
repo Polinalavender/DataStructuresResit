@@ -175,11 +175,41 @@ namespace DataStructure
         // Linear Search Algorithm
         public int LinearSearch(T value)
         {
-            // Perform the linear search within the class
+            return LinearSearch(root, value);
+        }
 
-            for (int i = 0; i < elements.Length; i++)
+        private int LinearSearch(TreeNode<T> node, T value)
+        {
+            if (node != null)
             {
-                if (elements[i].CompareTo(value) == 0)
+                if (value.Equals(node.Value))
+                {
+                    return GetIndex(node); // Return the index directly
+                }
+
+                int leftResult = LinearSearch(node.Left, value);
+                if (leftResult >= 0)
+                {
+                    return leftResult;
+                }
+
+                int rightResult = LinearSearch(node.Right, value);
+                if (rightResult >= 0)
+                {
+                    return rightResult;
+                }
+            }
+
+            return -1;
+        }
+
+        private int GetIndex(TreeNode<T> node)
+        {
+            // Traverse the tree to find the index of the node
+            T[] values = ToArray();
+            for (int i = 0; i < values.Length; i++)
+            {
+                if (values[i].Equals(node.Value))
                 {
                     return i;
                 }
@@ -187,6 +217,7 @@ namespace DataStructure
 
             return -1;
         }
+
 
         public void BubbleSort()
         {

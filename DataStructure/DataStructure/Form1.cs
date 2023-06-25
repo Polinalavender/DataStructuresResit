@@ -139,60 +139,63 @@ namespace DataStructure
 
         private void linearGoButton_Click(object sender, EventArgs e)
         {
-
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
             string target = linearInputBox.Text;
 
-            if (!string.IsNullOrEmpty(target) && linkedListButton.Checked)
+            if (!string.IsNullOrEmpty(target))
             {
-                int result = linkedList.LinearSearch(target);
+                int result = -1;
 
-                if (result >= 0)
+                if (linkedListButton.Checked)
                 {
-                    string[] values = linkedList.ToArray();
-                    string foundItem = values[result];
-                    richTextBox1.Text = $"{foundItem}";
+                    result = linkedList.LinearSearch(target);
+                    if (result >= 0)
+                    {
+                        string[] values = linkedList.ToArray();
+                        string foundItem = values[result];
+                        richTextBox1.Text = $"{foundItem}";
+                    }
+                    else
+                    {
+                        richTextBox1.Text = "Not found";
+                    }
                 }
-                else
+                else if (treeButton.Checked)
                 {
-                    richTextBox1.Text = "Not found";
+                    result = tree.LinearSearch(target);
+                    if (result >= 0)
+                    {
+                        string[] values = tree.ToArray();
+                        string foundItem = values[result];
+                        richTextBox1.Text = $"{foundItem}";
+                    }
+                    else
+                    {
+                        richTextBox1.Text = "Not found";
+                    }
+                }
+                else if (listButton.Checked)
+                {
+                    result = list.LinearSearch(target);
+                    if (result >= 0)
+                    {
+                        string[] values = list.ToArray();
+                        string foundItem = values[result];
+                        richTextBox1.Text = $"{foundItem}";
+                    }
+                    else
+                    {
+                        richTextBox1.Text = "Not found";
+                    }
+                }
+
+                if (result < 0)
+                {
+                    MessageBox.Show($"{target} not found");
                 }
             }
-
-            else if (!string.IsNullOrEmpty(target) && treeButton.Checked)
-            {
-                int result = tree.LinearSearch(target);
-
-                if (result >= 0)
-                {
-                    string[] values = tree.ToArray();
-                    string foundItem = values[result];
-                    richTextBox1.Text = $"{foundItem}";
-                }
-                else
-                {
-                    richTextBox1.Text = "Not found";
-                }
-            }
-
-            else if (!string.IsNullOrEmpty(target) && listButton.Checked)
-            {
-                int result = list.LinearSearch(target);
-
-                if (result >= 0)
-                {
-                    string[] values = list.ToArray();
-                    string foundItem = values[result];
-                    richTextBox1.Text = $"{foundItem}";
-                }
-                else
-                {
-                    richTextBox1.Text = "Not found";
-                }
-            }
-
             else
             {
                 MessageBox.Show("Please enter a valid search target.");
@@ -201,7 +204,13 @@ namespace DataStructure
             stopwatch.Stop();
             TimeSpan elapsedTime = stopwatch.Elapsed;
             timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
+
+            // Clear the input box after each search
+            linearInputBox.Text = string.Empty;
         }
+
+
+
 
 
         /* private void DisplayResults()
