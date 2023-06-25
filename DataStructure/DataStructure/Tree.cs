@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace DataStructure
 {
     public class Tree<T> where T : IComparable<T>
     {
+        private T[] elements;
 
         // Tree Data Structure
         private class TreeNode<T>
@@ -19,6 +21,11 @@ namespace DataStructure
                 Left = null;
                 Right = null;
             }
+        }
+
+        public Tree(T[] data)
+        {
+            elements = data;
         }
 
         private string[] treeArray;
@@ -166,11 +173,13 @@ namespace DataStructure
         }
 
         // Linear Search Algorithm
-        public static int LinearSearch<T>(T[] arr, T value) where T : IComparable<T>
+        public int LinearSearch(T value)
         {
-            for (int i = 0; i < arr.Length; i++)
+            // Perform the linear search within the class
+
+            for (int i = 0; i < elements.Length; i++)
             {
-                if (arr[i].CompareTo(value) == 0)
+                if (elements[i].CompareTo(value) == 0)
                 {
                     return i;
                 }

@@ -5,6 +5,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 
 namespace DataStructure
 {
@@ -82,61 +83,61 @@ namespace DataStructure
             }
         }
 
-private void goBinaryButton_Click(object sender, EventArgs e)
-{
-    Stopwatch stopwatch = new Stopwatch();
-    stopwatch.Start();
-
-    string target = binaryInputBox.Text;
-
-    if (!string.IsNullOrEmpty(target))
-    {
-        int result;
-        if (linkedListButton.Checked)
-            result = linkedList.BinarySearch(target);
-        else if (listButton.Checked)
-            result = list.BinarySearch(target);
-        else if (treeButton.Checked)
+        private void goBinaryButton_Click(object sender, EventArgs e)
         {
-            string[] treeValues = tree.ToArray();
-            result = Tree<string>.BinarySearch(treeValues, target);
-        }
-        else
-            result = -1;
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-        if (result >= 0)
-        {
-            string[] values;
-            if (linkedListButton.Checked)
-                values = linkedList.ToArray();
-            else if (listButton.Checked)
-                values = list.ToArray();
-            else if (treeButton.Checked)
-                values = tree.ToArray();
+            string target = binaryInputBox.Text;
+
+            if (!string.IsNullOrEmpty(target))
+            {
+                int result;
+                if (linkedListButton.Checked)
+                    result = linkedList.BinarySearch(target);
+                else if (listButton.Checked)
+                    result = list.BinarySearch(target);
+                else if (treeButton.Checked)
+                {
+                    string[] treeValues = tree.ToArray();
+                    result = Tree<string>.BinarySearch(treeValues, target);
+                }
+                else
+                    result = -1;
+
+                if (result >= 0)
+                {
+                    string[] values;
+                    if (linkedListButton.Checked)
+                        values = linkedList.ToArray();
+                    else if (listButton.Checked)
+                        values = list.ToArray();
+                    else if (treeButton.Checked)
+                        values = tree.ToArray();
+                    else
+                        values = new string[0];
+
+                    string foundItem = values[result];
+                    richTextBox1.Text = $"{foundItem}";
+                }
+                else
+                {
+                    richTextBox1.Text = "Not found";
+                }
+            }
             else
-                values = new string[0];
+            {
+                MessageBox.Show("Please enter a valid input");
+            }
 
-            string foundItem = values[result];
-            richTextBox1.Text = $"{foundItem}";
+            stopwatch.Stop();
+            TimeSpan elapsedTime = stopwatch.Elapsed;
+            timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
         }
-        else
-        {
-            richTextBox1.Text = "Not found";
-        }
-    }
-    else
-    {
-        MessageBox.Show("Please enter a valid input");
-    }
-
-    stopwatch.Stop();
-    TimeSpan elapsedTime = stopwatch.Elapsed;
-    timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
-}
 
 
 
-        private void lenearGoButton_Click(object sender, EventArgs e)
+        private void linearGoButton_Click(object sender, EventArgs e)
         {
 
             Stopwatch stopwatch = new Stopwatch();
@@ -144,7 +145,7 @@ private void goBinaryButton_Click(object sender, EventArgs e)
 
             string target = linearInputBox.Text;
 
-            if (!string.IsNullOrEmpty(target))
+            if (!string.IsNullOrEmpty(target) && linkedListButton.Checked)
             {
                 int result = linkedList.LinearSearch(target);
 
@@ -159,6 +160,39 @@ private void goBinaryButton_Click(object sender, EventArgs e)
                     richTextBox1.Text = "Not found";
                 }
             }
+
+            else if (!string.IsNullOrEmpty(target) && treeButton.Checked)
+            {
+                int result = tree.LinearSearch(target);
+
+                if (result >= 0)
+                {
+                    string[] values = tree.ToArray();
+                    string foundItem = values[result];
+                    richTextBox1.Text = $"{foundItem}";
+                }
+                else
+                {
+                    richTextBox1.Text = "Not found";
+                }
+            }
+
+            else if (!string.IsNullOrEmpty(target) && listButton.Checked)
+            {
+                int result = list.LinearSearch(target);
+
+                if (result >= 0) // Check
+                {
+                    string[] values = list.ToArray();
+                    string foundItem = values[result];
+                    richTextBox1.Text = $"{foundItem}";
+                }
+                else
+                {
+                    richTextBox1.Text = "Not found";
+                }
+            }
+
             else
             {
                 MessageBox.Show("Please enter a valid search target.");

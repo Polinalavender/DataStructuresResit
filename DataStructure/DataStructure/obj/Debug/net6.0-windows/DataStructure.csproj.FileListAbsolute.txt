@@ -25,3 +25,10 @@ C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStruct
 C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.dll
 C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\refint\DataStructure.dll
 C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.pdb
+C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStructure\bin\Debug\net6.0-windows\DataStructure.exe
+C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStructure\bin\Debug\net6.0-windows\DataStructure.deps.json
+C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStructure\bin\Debug\net6.0-windows\DataStructure.runtimeconfig.json
+C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStructure\bin\Debug\net6.0-windows\DataStructure.dll
+C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStructure\bin\Debug\net6.0-windows\DataStructure.pdb
+C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\DataStructure.genruntimeconfig.cache
+C:\Users\Nathan\Desktop\NHL Stenden\DataStructuresResit\DataStructure\DataStructure\obj\Debug\net6.0-windows\ref\DataStructure.dll
