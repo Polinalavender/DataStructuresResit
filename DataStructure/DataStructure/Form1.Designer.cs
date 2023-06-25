@@ -48,7 +48,6 @@
             label8 = new Label();
             label9 = new Label();
             timeExecution = new Label();
-            button4 = new Button();
             AscOrder = new Button();
             startBox = new Button();
             BucketSort = new CheckBox();
@@ -249,19 +248,9 @@
             timeExecution.Size = new Size(0, 20);
             timeExecution.TabIndex = 22;
             // 
-            // button4
-            // 
-            button4.Location = new Point(118, 409);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 23;
-            button4.Text = "Desc order";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
-            // 
             // AscOrder
             // 
-            AscOrder.Location = new Point(12, 409);
+            AscOrder.Location = new Point(70, 412);
             AscOrder.Name = "AscOrder";
             AscOrder.Size = new Size(100, 29);
             AscOrder.TabIndex = 25;
@@ -321,7 +310,6 @@
             Controls.Add(BucketSort);
             Controls.Add(startBox);
             Controls.Add(AscOrder);
-            Controls.Add(button4);
             Controls.Add(timeExecution);
             Controls.Add(label9);
             Controls.Add(label8);
@@ -370,7 +358,6 @@
         private Label label8;
         private Label label9;
         private Label timeExecution;
-        private Button button4;
         private Button AscOrder;
         private Button startBox;
         private CheckBox BucketSort;

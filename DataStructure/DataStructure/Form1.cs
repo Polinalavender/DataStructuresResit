@@ -254,11 +254,6 @@ namespace DataStructure
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void SortButton_Click(object sender, EventArgs e)
         {
             int checkedCount = 0;
@@ -267,24 +262,36 @@ namespace DataStructure
             {
                 if (BubbleSort.Checked)
                 {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
                     linkedList.BubbleSort();
                     DisplayResults(linkedList);
                     checkedCount++;
+                    TimeSpan elapsedTime = stopwatch.Elapsed;
+                    timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
                 }
                 else if (BucketSort.Checked)
                 {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
                     linkedList.BucketSort();
                     DisplayResults(linkedList);
                     checkedCount++;
+                    TimeSpan elapsedTime = stopwatch.Elapsed;
+                    timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
                 }
             }
             else if (treeButton.Checked)
             {
                 if (BubbleSort.Checked)
                 {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
                     tree.BubbleSort();
                     DisplayResults(tree);
                     checkedCount++;
+                    TimeSpan elapsedTime = stopwatch.Elapsed;
+                    timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
                 }
                 else if (BucketSort.Checked)
                 {
@@ -296,15 +303,23 @@ namespace DataStructure
             {
                 if (BubbleSort.Checked && !BucketSort.Checked)
                 {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
                     list.BubbleSort();
                     DisplayResults(linkedList);
                     checkedCount++;
+                    TimeSpan elapsedTime = stopwatch.Elapsed;
+                    timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
                 }
                 else if (BucketSort.Checked && !BubbleSort.Checked)
                 {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
                     list.BucketSort();
                     DisplayResults(linkedList);
                     checkedCount++;
+                    TimeSpan elapsedTime = stopwatch.Elapsed;
+                    timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
                 }
             }
 
@@ -326,7 +341,6 @@ namespace DataStructure
             }
         }
 
-
         private void DisplayResults(Tree<string> tree)
         {
             throw new NotImplementedException();
@@ -343,13 +357,5 @@ namespace DataStructure
                 richTextBox1.AppendText(Environment.NewLine);
             }
         }
-
-
-
-
-
-
-
-
     }
 }
