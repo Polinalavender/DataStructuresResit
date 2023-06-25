@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ScrollBar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Diagnostics;
 
 namespace DataStructure
 {
@@ -84,6 +85,10 @@ namespace DataStructure
 
         private void goBinaryButton_Click(object sender, EventArgs e)
         {
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             string target = binaryInputBox.Text;
 
             if (!string.IsNullOrEmpty(target))
@@ -105,10 +110,19 @@ namespace DataStructure
             {
                 MessageBox.Show("Please enter a valid input");
             }
+
+            stopwatch.Stop();
+            TimeSpan elapsedTime = stopwatch.Elapsed;
+            timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
+
         }
 
         private void lenearGoButton_Click(object sender, EventArgs e)
         {
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             string target = linearInputBox.Text;
 
             if (!string.IsNullOrEmpty(target))
@@ -130,6 +144,10 @@ namespace DataStructure
             {
                 MessageBox.Show("Please enter a valid search target.");
             }
+
+            stopwatch.Stop();
+            TimeSpan elapsedTime = stopwatch.Elapsed;
+            timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
         }
 
         private void bucketSortButton_CheckedChanged(object sender, EventArgs e)
@@ -153,12 +171,20 @@ namespace DataStructure
 
         private void bubbleSortButton_CheckedChanged(object sender, EventArgs e)
         {
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             if (bubbleSortButton.Checked)
             {
 
                 linkedList.BucketSort();
                 DisplayResults();
             }
+
+            stopwatch.Stop();
+            TimeSpan elapsedTime = stopwatch.Elapsed;
+            timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
         }
 
         private void AscOrder_Click(object sender, EventArgs e)
@@ -179,7 +205,7 @@ namespace DataStructure
                 tree.BubbleSort();
                 Updating(tree.ToArray());
             }
-            
+
             else if (listButton.Checked)
             {
                 //
@@ -197,7 +223,7 @@ namespace DataStructure
             }
         }
 
-         private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
 
         }
