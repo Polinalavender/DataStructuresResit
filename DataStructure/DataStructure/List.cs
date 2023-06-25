@@ -196,10 +196,5 @@ namespace DataStructure
                 }
             }
         }
-
-        internal void Sort()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
