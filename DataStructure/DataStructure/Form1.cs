@@ -82,40 +82,59 @@ namespace DataStructure
             }
         }
 
+private void goBinaryButton_Click(object sender, EventArgs e)
+{
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.Start();
 
-        private void goBinaryButton_Click(object sender, EventArgs e)
+    string target = binaryInputBox.Text;
+
+    if (!string.IsNullOrEmpty(target))
+    {
+        int result;
+        if (linkedListButton.Checked)
+            result = linkedList.BinarySearch(target);
+        else if (listButton.Checked)
+            result = list.BinarySearch(target);
+        else if (treeButton.Checked)
         {
-
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            string target = binaryInputBox.Text;
-
-            if (!string.IsNullOrEmpty(target))
-            {
-                int result = linkedList.BinarySearch(target);
-
-                if (result >= 0)
-                {
-                    string[] values = linkedList.ToArray();
-                    string foundItem = values[result];
-                    richTextBox1.Text = $"{foundItem}";
-                }
-                else
-                {
-                    richTextBox1.Text = "Not found";
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please enter a valid input");
-            }
-
-            stopwatch.Stop();
-            TimeSpan elapsedTime = stopwatch.Elapsed;
-            timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
-
+            string[] treeValues = tree.ToArray();
+            result = Tree<string>.BinarySearch(treeValues, target);
         }
+        else
+            result = -1;
+
+        if (result >= 0)
+        {
+            string[] values;
+            if (linkedListButton.Checked)
+                values = linkedList.ToArray();
+            else if (listButton.Checked)
+                values = list.ToArray();
+            else if (treeButton.Checked)
+                values = tree.ToArray();
+            else
+                values = new string[0];
+
+            string foundItem = values[result];
+            richTextBox1.Text = $"{foundItem}";
+        }
+        else
+        {
+            richTextBox1.Text = "Not found";
+        }
+    }
+    else
+    {
+        MessageBox.Show("Please enter a valid input");
+    }
+
+    stopwatch.Stop();
+    TimeSpan elapsedTime = stopwatch.Elapsed;
+    timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
+}
+
+
 
         private void lenearGoButton_Click(object sender, EventArgs e)
         {
@@ -154,10 +173,21 @@ namespace DataStructure
         {
             if (bucketSortButton.Checked)
             {
-                linkedList.BucketSort();
-                DisplayResults();
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                if (linkedListButton.Checked)
+                {
+                    linkedList.BucketSort();
+                    DisplayResults();
+                }
+
+                stopwatch.Stop();
+                TimeSpan elapsedTime = stopwatch.Elapsed;
+                timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
             }
         }
+
         private void DisplayResults()
         {
             richTextBox1.Clear();
@@ -171,21 +201,23 @@ namespace DataStructure
 
         private void bubbleSortButton_CheckedChanged(object sender, EventArgs e)
         {
-
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
             if (bubbleSortButton.Checked)
             {
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
 
-                linkedList.BucketSort();
-                DisplayResults();
+                if (linkedListButton.Checked)
+                {
+                    linkedList.BubbleSort();
+                    DisplayResults();
+                }
+
+                stopwatch.Stop();
+                TimeSpan elapsedTime = stopwatch.Elapsed;
+                timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
             }
-
-            stopwatch.Stop();
-            TimeSpan elapsedTime = stopwatch.Elapsed;
-            timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
         }
+
 
         private void AscOrder_Click(object sender, EventArgs e)
         {
