@@ -64,7 +64,7 @@ namespace DataStructure
         {
             for (int i = 0; i < count; i++)
             {
-                data[i] = default; // set each element to its default value
+                data[i] = default;
             }
             count = 0;
             Array.Resize(ref data, 8);

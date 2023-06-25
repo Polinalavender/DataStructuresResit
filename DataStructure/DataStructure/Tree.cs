@@ -23,11 +23,6 @@ namespace DataStructure
 
         private string[] treeArray;
 
-        public string[] ToArray()
-        {
-            return treeArray;
-        }
-
         private TreeNode<T> root;
 
         public Tree()
@@ -73,6 +68,22 @@ namespace DataStructure
             }
         }
 
+        public T[] ToArray()
+        {
+            List<T> result = new List<T>();
+            TraverseInOrder(root, result);
+            return result.ToArray();
+        }
+
+        private void TraverseInOrder(TreeNode<T> node, List<T> result)
+        {
+            if (node != null)
+            {
+                TraverseInOrder(node.Left, result);
+                result.Add(node.Value);
+                TraverseInOrder(node.Right, result);
+            }
+        }
         // Binary Search Algorithm
         public static int BinarySearch<T>(T[] arr, T value) where T : IComparable<T>
         {
