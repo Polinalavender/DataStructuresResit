@@ -84,32 +84,16 @@ namespace DataStructure
 
         public void BubbleSort()
         {
-            if (count <= 1)
-            {
-                return;
-            }
-
-            bool swapped;
-
             for (int i = 0; i < count - 1; i++)
             {
-                swapped = false;
-
                 for (int j = 0; j < count - i - 1; j++)
                 {
                     if (Comparer<T>.Default.Compare(data[j], data[j + 1]) > 0)
                     {
-                        // swap data[j] and data[j + 1]
                         T temp = data[j];
                         data[j] = data[j + 1];
                         data[j + 1] = temp;
-                        swapped = true;
                     }
-                }
-
-                if (!swapped) // if no  elements were swapped in the inner loop, then the list is already sorted
-                {
-                    break;
                 }
             }
         }
