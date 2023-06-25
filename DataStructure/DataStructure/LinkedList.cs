@@ -290,7 +290,7 @@ namespace DataStructure
                 {
                     if (Comparer<T>.Default.Compare(current.Value, nextNode.Value) > 0)
                     {
-                        // Swapping
+                        // Swap
                         if (previous != null)
                         {
                             previous.Next = nextNode;

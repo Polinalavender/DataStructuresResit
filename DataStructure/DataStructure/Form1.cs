@@ -296,12 +296,14 @@ namespace DataStructure
             {
                 if (BubbleSort.Checked && !BucketSort.Checked)
                 {
-                    MessageBox.Show("Bubble sort is not supported for the list data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    list.BubbleSort();
+                    DisplayResults(linkedList);
                     checkedCount++;
                 }
                 else if (BucketSort.Checked && !BubbleSort.Checked)
                 {
-                    MessageBox.Show("Bucket sort is not supported for the list data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    list.BucketSort();
+                    DisplayResults(linkedList);
                     checkedCount++;
                 }
             }

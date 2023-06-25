@@ -179,7 +179,8 @@ namespace DataStructure
             // assign each element to its respective bucket
             for (int i = 0; i < count; i++)
             {
-                int bucketIndex = (int)(((dynamic)data[i] - (dynamic)min) / range * (bucketCount - 1)); // calculate the bucket index for the current element
+                int bucketIndex = (int)(((Convert.ToDouble(data[i]) - Convert.ToDouble(min)) / range) * (bucketCount - 1)); // calculate the bucket index for the current element
+
 
                 // resize if necessary
                 if (bucketSizes[bucketIndex] == buckets[bucketIndex].Length)
@@ -210,6 +211,11 @@ namespace DataStructure
                     data[currentIndex++] = buckets[i][j]; // add sorted element to the original list
                 }
             }
+        }
+
+        internal void Sort()
+        {
+            throw new NotImplementedException();
         }
     }
 }
