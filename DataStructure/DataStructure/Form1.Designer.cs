@@ -309,6 +309,7 @@
             SortButton.TabIndex = 29;
             SortButton.Text = "Press to sort";
             SortButton.UseVisualStyleBackColor = true;
+            SortButton.Click += SortButton_Click;
             // 
             // Form1
             // 

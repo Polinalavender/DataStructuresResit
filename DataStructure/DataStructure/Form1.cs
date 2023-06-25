@@ -181,7 +181,7 @@ namespace DataStructure
             {
                 int result = list.LinearSearch(target);
 
-                if (result >= 0) // Check
+                if (result >= 0)
                 {
                     string[] values = list.ToArray();
                     string foundItem = values[result];
@@ -204,16 +204,16 @@ namespace DataStructure
         }
 
 
-        private void DisplayResults()
-        {
-            richTextBox1.Clear();
+        /* private void DisplayResults()
+         {
+             richTextBox1.Clear();
 
-            string[] sortedArray = linkedList.ToArray();
-            foreach (string value in sortedArray)
-            {
-                richTextBox1.AppendText(value + Environment.NewLine);
-            }
-        }
+             string[] sortedArray = linkedList.ToArray();
+             foreach (string value in sortedArray)
+             {
+                 richTextBox1.AppendText(value + Environment.NewLine);
+             }
+         }*/
 
 
 
@@ -258,6 +258,96 @@ namespace DataStructure
         {
 
         }
+
+        private void SortButton_Click(object sender, EventArgs e)
+        {
+            int checkedCount = 0;
+
+            if (linkedListButton.Checked)
+            {
+                if (BubbleSort.Checked)
+                {
+                    linkedList.BubbleSort();
+                    DisplayResults(linkedList);
+                    checkedCount++;
+                }
+                else if (BucketSort.Checked)
+                {
+                    linkedList.BucketSort();
+                    DisplayResults(linkedList);
+                    checkedCount++;
+                }
+            }
+            else if (treeButton.Checked)
+            {
+                if (BubbleSort.Checked)
+                {
+                    tree.BubbleSort();
+                    DisplayResults(tree);
+                    checkedCount++;
+                }
+                else if (BucketSort.Checked)
+                {
+                    MessageBox.Show("Bucket sort is not supported for the tree data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    checkedCount++;
+                }
+            }
+            else if (listButton.Checked)
+            {
+                if (BubbleSort.Checked && !BucketSort.Checked)
+                {
+                    MessageBox.Show("Bubble sort is not supported for the list data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    checkedCount++;
+                }
+                else if (BucketSort.Checked && !BubbleSort.Checked)
+                {
+                    MessageBox.Show("Bucket sort is not supported for the list data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    checkedCount++;
+                }
+            }
+
+            if (checkedCount == 0)
+            {
+                MessageBox.Show("Please select a sorting algorithm.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (checkedCount > 1)
+            {
+                MessageBox.Show("Please select only one sorting algorithm.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (checkedCount == 0 && !(linkedListButton.Checked || treeButton.Checked || listButton.Checked))
+            {
+                MessageBox.Show("Please select a data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (BucketSort.Checked && BubbleSort.Checked)
+            {
+                MessageBox.Show("Please select only one sorting algorithm.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void DisplayResults(Tree<string> tree)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DisplayResults(LinkedList<string> linkedList)
+        {
+            richTextBox1.Clear();
+
+            string[] array = linkedList.ToArray();
+            foreach (string item in array)
+            {
+                richTextBox1.AppendText(item);
+                richTextBox1.AppendText(Environment.NewLine);
+            }
+        }
+
+
+
+
+
+
+
 
     }
 }
