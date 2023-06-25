@@ -51,6 +51,9 @@
             button4 = new Button();
             AscOrder = new Button();
             startBox = new Button();
+            BucketSort = new CheckBox();
+            BubbleSort = new CheckBox();
+            SortButton = new Button();
             SuspendLayout();
             // 
             // label1
@@ -278,11 +281,43 @@
             startBox.UseVisualStyleBackColor = true;
             startBox.Click += startBox_Click;
             // 
+            // BucketSort
+            // 
+            BucketSort.AutoSize = true;
+            BucketSort.Location = new Point(421, 120);
+            BucketSort.Name = "BucketSort";
+            BucketSort.Size = new Size(106, 24);
+            BucketSort.TabIndex = 27;
+            BucketSort.Text = "Bucket Sort";
+            BucketSort.UseVisualStyleBackColor = true;
+            // 
+            // BubbleSort
+            // 
+            BubbleSort.AutoSize = true;
+            BubbleSort.Location = new Point(421, 155);
+            BubbleSort.Name = "BubbleSort";
+            BubbleSort.Size = new Size(109, 24);
+            BubbleSort.TabIndex = 28;
+            BubbleSort.Text = "Bubble Sort";
+            BubbleSort.UseVisualStyleBackColor = true;
+            // 
+            // SortButton
+            // 
+            SortButton.Location = new Point(421, 193);
+            SortButton.Name = "SortButton";
+            SortButton.Size = new Size(122, 29);
+            SortButton.TabIndex = 29;
+            SortButton.Text = "Press to sort";
+            SortButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(903, 453);
+            Controls.Add(SortButton);
+            Controls.Add(BubbleSort);
+            Controls.Add(BucketSort);
             Controls.Add(startBox);
             Controls.Add(AscOrder);
             Controls.Add(button4);
@@ -337,5 +372,8 @@
         private Button button4;
         private Button AscOrder;
         private Button startBox;
+        private CheckBox BucketSort;
+        private CheckBox BubbleSort;
+        private Button SortButton;
     }
 }
