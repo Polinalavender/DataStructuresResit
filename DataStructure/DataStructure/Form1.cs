@@ -48,9 +48,6 @@ namespace DataStructure
             inputBox.Text = string.Empty;
         }
 
-
-
-
         private void startBox_Click(object sender, EventArgs e)
         {
             if (linkedListButton.Checked)
@@ -64,12 +61,18 @@ namespace DataStructure
             }
             else if (treeButton.Checked)
             {
-                string input = inputBox.Text;
-                tree.Insert(input);
-                inputBox.Text = string.Empty;
+                richTextBox1.Text = string.Empty;
 
                 string[] values = tree.ToArray();
-                richTextBox1.Text = string.Join(Environment.NewLine, values);
+
+                foreach (string item in values)
+                {
+                    if (string.IsNullOrEmpty(item)) 
+                        continue; // Skip the empty string
+
+                    richTextBox1.AppendText(item);
+                    richTextBox1.AppendText(Environment.NewLine);
+                }
             }
             else if (listButton.Checked)
             {
@@ -292,7 +295,7 @@ namespace DataStructure
             }
             else if (treeButton.Checked)
             {
-                if (BubbleSort.Checked)
+                if (BubbleSort.Checked && !BucketSort.Checked)
                 {
                     Stopwatch stopwatch = new Stopwatch();
                     stopwatch.Start();
@@ -302,7 +305,7 @@ namespace DataStructure
                     TimeSpan elapsedTime = stopwatch.Elapsed;
                     timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
                 }
-                else if (BucketSort.Checked)
+                else if (BucketSort.Checked && !BubbleSort.Checked)
                 {
                     Stopwatch stopwatch = new Stopwatch();
                     stopwatch.Start();
@@ -369,7 +372,14 @@ namespace DataStructure
 
         private void DisplayResults(Tree<string> tree)
         {
-            throw new NotImplementedException(); // System.NotImplimentedException Error
+            richTextBox1.Clear();
+
+            string[] array = tree.ToArray();
+            foreach (string item in array)
+            {
+                richTextBox1.AppendText(item);
+                richTextBox1.AppendText(Environment.NewLine);
+            }
         }
 
         private void DisplayResults(LinkedList<string> linkedList)
