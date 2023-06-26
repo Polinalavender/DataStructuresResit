@@ -1,4 +1,11 @@
-﻿namespace DataStructure
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataStructure
 {
     public class List<T>
     {
@@ -182,9 +189,6 @@
                         }
                     }
                 }
-
-                Array.Copy(buckets[i], 0, data, dataIndex, bucketIndexes[i]); // add the sorted elements to the original list
-                dataIndex += bucketIndexes[i]; // update the data index for the next bucket
             }
         }
 
