@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataStructure
+﻿namespace DataStructure
 {
     public class List<T>
     {
         private T[] data;
-        public T element { get; }
+        public T element { get; set; }
         private int count;
 
         public List()
@@ -23,7 +16,7 @@ namespace DataStructure
         {
             if (count == data.Length)
             {
-                Array.Resize(ref data, count + 1);
+                Array.Resize(ref data, count * 2);
             }
 
             data[count++] = element;
@@ -35,7 +28,7 @@ namespace DataStructure
 
             if (elementIndex >= 0)
             {
-                for (int i = elementIndex + 1; i < count; i++) // loop starting from the elements after elementIndex and move them one postion to the 'left'
+                for (int i = elementIndex + 1; i < count; i++) // loop starting from the elements after elementIndex and move them one postion
                 {
                     data[i - 1] = data[i];
                 }
@@ -70,6 +63,8 @@ namespace DataStructure
             Array.Resize(ref data, 8);
         }
 
+        //Linear search ----------------------------------------------//
+
         public int LinearSearch(T element)
         {
             for (int i = 0; i < count; i++)
@@ -81,6 +76,8 @@ namespace DataStructure
             }
             return -1;
         }
+
+        //Bubble Sort ----------------------------------------------//
 
         public void BubbleSort()
         {
@@ -98,11 +95,13 @@ namespace DataStructure
             }
         }
 
+        //Binary search ----------------------------------------------//
+
         public int BinarySearch(T element)
         {
             if (Comparer<T>.Default.Compare(data[0], data[count - 1]) > 0) // check if list is sorted
             {
-                BubbleSort(); // if its not the bubble sort it
+                BubbleSort(); // if its not then sort it using bubble sort
             }
 
             int left = 0;
@@ -129,6 +128,8 @@ namespace DataStructure
             return -1;
         }
 
+        //Bucket Sort ----------------------------------------------//
+
         public void BucketSort()
         {
             if (count <= 1)
@@ -147,54 +148,58 @@ namespace DataStructure
                     max = data[i];
             }
 
-            // calculate the range of each bucket
-            int bucketCount = count / 4;
-            int range = Comparer<T>.Default.Compare(max, min) == 0 ? default : Comparer<T>.Default.Compare(max, min);
+            int bucketCount = count;
 
-            // create and initialize the buckets
-            int[] bucketSizes = new int[bucketCount];
+            // make buckets
             T[][] buckets = new T[bucketCount][];
             for (int i = 0; i < bucketCount; i++)
             {
-                bucketSizes[i] = 0;
-                buckets[i] = new T[count]; // initialize each bucket with the maximum possible size
+                buckets[i] = new T[count];
             }
 
-            // assign each element to its respective bucket
+            int[] bucketIndexes = new int[bucketCount]; // for tracking the current index for each bucket
+
+            // assign each element to its bucket
             for (int i = 0; i < count; i++)
             {
-                int bucketIndex = (int)(((Convert.ToDouble(data[i]) - Convert.ToDouble(min)) / range) * (bucketCount - 1)); // calculate the bucket index for the current element
-
-
-                // resize if necessary
-                if (bucketSizes[bucketIndex] == buckets[bucketIndex].Length)
-                {
-                    Array.Resize(ref buckets[bucketIndex], bucketSizes[bucketIndex] + 1);
-                }
-
-                int bucketSize = bucketSizes[bucketIndex]; // get the current size of the bucket
-                T[] currentBucket = buckets[bucketIndex]; // get the current bucket
-                bucketSizes[bucketIndex] = bucketSize + 1; // increase the bucket size by 1
-                currentBucket[bucketSize] = data[i]; // assign the element to the current bucket
-
+                int bucketIndex = GetBucketIndex(data[i], min, max, bucketCount); // calculate the bucket index
+                buckets[bucketIndex][bucketIndexes[bucketIndex]++] = data[i]; // place the element in the bucket and increment the bucket index
             }
 
-            // sort each bucket individually 
+            int dataIndex = 0;
             for (int i = 0; i < bucketCount; i++)
             {
-                Array.Resize(ref buckets[i], bucketSizes[i]); // trim the bucket size to the actual number of elements
-                Array.Sort(buckets[i], 0, bucketSizes[i]);
-            }
-
-            // merge the sorted buckets back into the original list
-            int currentIndex = 0;
-            for (int i = 0; i < bucketCount; i++)
-            {
-                for (int j = 0; j < bucketSizes[i]; j++)
+                // sort using bubble sort
+                for (int j = 0; j < bucketIndexes[i]; j++)
                 {
-                    data[currentIndex++] = buckets[i][j]; // add sorted element to the original list
+                    for (int k = 0; k < bucketIndexes[i] - j - 1; k++)
+                    {
+                        if (Comparer<T>.Default.Compare(buckets[i][k], buckets[i][k + 1]) > 0)
+                        {
+                            T temp = buckets[i][k];
+                            buckets[i][k] = buckets[i][k + 1];
+                            buckets[i][k + 1] = temp;
+                        }
+                    }
                 }
+
+                Array.Copy(buckets[i], 0, data, dataIndex, bucketIndexes[i]); // add the sorted elements to the original list
+                dataIndex += bucketIndexes[i]; // update the data index for the next bucket
             }
+        }
+
+        private int GetBucketIndex(T element, T min, T max, int bucketCount)
+        {
+            int index = Convert.ToInt32(Math.Floor(Convert.ToDouble(bucketCount) * (Comparer<T>.Default.Compare(element, min) - Comparer<T>.Default.Compare(max, min)) / (Comparer<T>.Default.Compare(max, min) - Comparer<T>.Default.Compare(min, max))));
+            if (index >= bucketCount)
+            {
+                index = bucketCount - 1;
+            }
+            else if (index < 0)
+            {
+                index = 0;
+            }
+            return index;
         }
     }
 }
