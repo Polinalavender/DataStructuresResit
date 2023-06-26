@@ -189,6 +189,9 @@ namespace DataStructure
                         }
                     }
                 }
+
+                Array.Copy(buckets[i], 0, data, dataIndex, bucketIndexes[i]); // add the sorted elements to the original list
+                dataIndex += bucketIndexes[i]; // update the data index for the next bucket
             }
         }
 
