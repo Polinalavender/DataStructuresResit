@@ -19,7 +19,7 @@ namespace DataStructure
 
         private Node head;
         private Node end;
-        public int numberOfElements { get; private set; }
+        public int numberOfElements { get; set; }
 
         public LinkedList()
         {
@@ -177,30 +177,14 @@ namespace DataStructure
                     current = current.Next;
                     index++;
                 }
-                return -1; // Value not found
+                return -1; 
         }
 
        
-
-        private int GetBucketIndex(T value, T minValue, T maxValue, int bucketCount)
-        {
-            int index = Convert.ToInt32(Math.Floor(Convert.ToDouble(bucketCount) * (Comparer<T>.Default.Compare(value, minValue) - Comparer<T>.Default.Compare(maxValue, minValue)) / (Comparer<T>.Default.Compare(maxValue, minValue) - Comparer<T>.Default.Compare(minValue, maxValue))));
-            if (index >= bucketCount)
-            {
-                index = bucketCount - 1;
-            }
-            else if (index < 0)
-            {
-                index = 0;
-            }
-            return index;
-        }
-
-
+        //Bucket sort-------------------------------------------------//
 
         public void BucketSort()
         {
-            // Create buckets
             int bucketCount = numberOfElements;
             LinkedList<T>[] buckets = new LinkedList<T>[bucketCount];
             for (int i = 0; i < bucketCount; i++)
@@ -208,7 +192,7 @@ namespace DataStructure
                 buckets[i] = new LinkedList<T>();
             }
 
-            // Determine the minimum and maximum values
+
             T minValue = head.Value;
             T maxValue = head.Value;
             Node current = head;
@@ -225,7 +209,7 @@ namespace DataStructure
                 current = current.Next;
             }
 
-            // Distribute elements into buckets
+            // To buckets
             current = head;
             while (current != null)
             {
@@ -234,13 +218,12 @@ namespace DataStructure
                 current = current.Next;
             }
 
-            // Sort each bucket individually (using BubbleSort in this example)
+            // Sort
             for (int i = 0; i < bucketCount; i++)
             {
                 buckets[i].BubbleSort();
             }
 
-            // Concatenate the sorted buckets back into the original list
             head = null;
             end = null;
             numberOfElements = 0;
@@ -266,6 +249,20 @@ namespace DataStructure
                     numberOfElements += bucketSize;
                 }
             }
+        }
+
+        private int GetBucketIndex(T value, T minValue, T maxValue, int bucketCount)
+        {
+            int index = Convert.ToInt32(Math.Floor(Convert.ToDouble(bucketCount) * (Comparer<T>.Default.Compare(value, minValue) - Comparer<T>.Default.Compare(maxValue, minValue)) / (Comparer<T>.Default.Compare(maxValue, minValue) - Comparer<T>.Default.Compare(minValue, maxValue))));
+            if (index >= bucketCount)
+            {
+                index = bucketCount - 1;
+            }
+            else if (index < 0)
+            {
+                index = 0;
+            }
+            return index;
         }
 
 
