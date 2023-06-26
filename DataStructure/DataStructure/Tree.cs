@@ -45,11 +45,11 @@ namespace DataStructure
             }
             else
             {
-                Insert(root, value);
+                InsertRecursive(value, root);
             }
         }
 
-        private void Insert(TreeNode<T> node, T value)
+        private void InsertRecursive(T value, TreeNode<T> node)
         {
             if (value.CompareTo(node.Value) < 0)
             {
@@ -59,7 +59,7 @@ namespace DataStructure
                 }
                 else
                 {
-                    Insert(node.Left, value);
+                    InsertRecursive(value, node.Left);
                 }
             }
             else
@@ -70,7 +70,7 @@ namespace DataStructure
                 }
                 else
                 {
-                    Insert(node.Right, value);
+                    InsertRecursive(value, node.Right);
                 }
             }
         }
@@ -91,6 +91,7 @@ namespace DataStructure
                 TraverseInOrder(node.Right, result);
             }
         }
+
         // Binary Search Algorithm
         public static int BinarySearch<T>(T[] arr, T value) where T : IComparable<T>
         {
@@ -119,58 +120,41 @@ namespace DataStructure
             return -1;
         }
 
-        // Bubble Sort Algorithm
-        public void BubbleSort(T[] arr)
-        {
-            if (arr == null)
-            {
-                throw new ArgumentNullException(nameof(arr));
-            }
-
-            int n = arr.Length;
-            bool swapped;
-
-            for (int i = 0; i < n - 1; i++)
-            {
-                swapped = false;
-                for (int j = 0; j < n - i - 1; j++)
-                {
-                    if (arr[j].CompareTo(arr[j + 1]) > 0)
-                    {
-                        T temp = arr[j];
-                        arr[j] = arr[j + 1];
-                        arr[j + 1] = temp;
-                        swapped = true;
-                    }
-                }
-
-                if (!swapped)
-                {
-                    break;
-                }
-            }
-        }
-
         // Bucket Sort Algorithm
-        public static void BucketSort(int[] arr, int maxVal)
+        public void BucketSort()
         {
-            int[] bucket = new int[maxVal + 1];
-
-            for (int i = 0; i < arr.Length; i++)
+            if (root == null)
             {
-                bucket[arr[i]]++;
+                throw new InvalidOperationException("Cannot perform Bucket Sort on an empty tree.");
             }
 
-            int k = 0;
+            // Create a new tree to hold the sorted elements
+            Tree<T> sortedTree = new Tree<T>();
 
-            for (int i = 0; i < bucket.Length; i++)
+            // Traverse the original tree and insert elements into the sorted tree
+            TraverseAndInsert(root, sortedTree);
+
+            // Convert the sorted tree to an array
+            elements = sortedTree.ToArray();
+        }
+
+        // Traverse the original tree and insert elements into the sorted tree
+        private void TraverseAndInsert(TreeNode<T> node, Tree<T> sortedTree)
+        {
+            if (node != null)
             {
-                for (int j = 0; j < bucket[i]; j++)
-                {
-                    arr[k++] = i;
-                }
+                // Recursively traverse the left subtree
+                TraverseAndInsert(node.Left, sortedTree);
+
+                // Insert the current node's value into the sorted tree
+                sortedTree.Insert(node.Value);
+
+                // Recursively traverse the right subtree
+                TraverseAndInsert(node.Right, sortedTree);
             }
         }
+
+
 
         // Linear Search Algorithm
         public int LinearSearch(T value)
@@ -217,7 +201,6 @@ namespace DataStructure
 
             return -1;
         }
-
 
         public void BubbleSort()
         {

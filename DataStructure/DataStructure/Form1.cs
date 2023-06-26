@@ -304,8 +304,13 @@ namespace DataStructure
                 }
                 else if (BucketSort.Checked)
                 {
-                    MessageBox.Show("Bucket sort is not supported for the tree data structure.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
+                    tree.BucketSort();
+                    DisplayResults(tree);
                     checkedCount++;
+                    TimeSpan elapsedTime = stopwatch.Elapsed;
+                    timeExecution.Text = $"Execution Time: {elapsedTime.TotalMilliseconds} ms";
                 }
             }
             else if (listButton.Checked)
@@ -364,7 +369,7 @@ namespace DataStructure
 
         private void DisplayResults(Tree<string> tree)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); // System.NotImplimentedException Error
         }
 
         private void DisplayResults(LinkedList<string> linkedList)
