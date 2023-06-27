@@ -1,6 +1,10 @@
-﻿public class Tree<T> where T : IComparable<T>
+﻿using System.Collections;
+using System.Xml.Linq;
+
+public class Tree<T> where T : IComparable<T>
 {
     private T[] elements;
+    private int count;
 
     // Tree Data Structure
     private class TreeNode<T>
@@ -20,6 +24,7 @@
     public Tree(T[] data)
     {
         elements = data;
+        count = elements.Length;
     }
 
     //private string[] toArray;
@@ -29,6 +34,7 @@
     public Tree()
     {
         root = null;
+        count = 0;
     }
 
     public void Insert(T value)
@@ -67,6 +73,7 @@
                 InsertRecursive(value, node.Right);
             }
         }
+        count++;
     }
 
     public T[] ToArray()
@@ -115,42 +122,6 @@
         return -1;
     }
 
-    // Bucket Sort Algorithm
-    public void BucketSort()
-    {
-        if (root == null)
-        {
-            MessageBox.Show("Cannot perform Bucket Sort on an empty tree.");
-        }
-
-        // Create a new tree to hold the sorted elements
-        Tree<T> sortedTree = new Tree<T>();
-
-        // Traverse the original tree and insert elements into the sorted tree
-        TraverseAndInsert(root, sortedTree);
-
-        // Convert the sorted tree to an array
-        elements = sortedTree.ToArray();
-    }
-
-    // Traverse the original tree and insert elements into the sorted tree
-    private void TraverseAndInsert(TreeNode<T> node, Tree<T> sortedTree)
-    {
-        if (node != null)
-        {
-            // Recursively traverse the left subtree
-            TraverseAndInsert(node.Left, sortedTree);
-
-            // Insert the current node's value into the sorted tree
-            sortedTree.Insert(node.Value);
-
-            // Recursively traverse the right subtree
-            TraverseAndInsert(node.Right, sortedTree);
-        }
-    }
-
-
-
     // Linear Search Algorithm
     public int LinearSearch(T value)
     {
@@ -197,30 +168,98 @@
         return -1;
     }
 
+    // Bubble Sort Algorithm
+
     public void BubbleSort()
     {
-        if (elements == null || elements.Length <= 1)
-        {
-            return; // No need to sort if there are 0 or 1 element
-        }
+        T[] value = ToArray();
 
-        bool swapped;
-        do
+        for (int i = 0; i < count - 1; i++)
         {
-            swapped = false;
-            for (int i = 0; i < elements.Length - 1; i++)
+            for (int j = 0; j < count - i - 1; j++)
             {
-                if (elements[i].CompareTo(elements[i + 1]) > 0)
+                if (Comparer<T>.Default.Compare(value[j], value[j + 1]) > 0)
                 {
-                    // Swap elements[i] and elements[i + 1]
-                    T temp = elements[i];
-                    elements[i] = elements[i + 1];
-                    elements[i + 1] = temp;
-                    swapped = true;
+                    T temp = value[j];
+                    value[j] = value[j + 1];
+                    value[j + 1] = temp;
                 }
             }
-        } while (swapped);
+        }
+    }
 
-    } 
-}
+    // Bucket Sort Algorithm
 
+    public void BucketSort()
+    {
+        T[] value = ToArray();
+
+        if (count <= 1)
+        {
+            return;
+        }
+
+        // find the minimum and maximum values in the list
+        T min = value[0];
+        T max = value[0];
+        for (int i = 1; i < count; i++)
+        {
+            if (Comparer<T>.Default.Compare(value[i], min) < 0)
+                min = value[i];
+            if (Comparer<T>.Default.Compare(value[i], max) > 0)
+                max = value[i];
+        }
+
+        int bucketCount = count;
+
+        // make buckets
+        T[][] buckets = new T[bucketCount][];
+        for (int i = 0; i < bucketCount; i++)
+        {
+            buckets[i] = new T[count];
+        }
+
+        int[] bucketIndexes = new int[bucketCount]; // for tracking the current index for each bucket
+
+        // assign each element to its bucket
+        for (int i = 0; i < count; i++)
+        {
+            int bucketIndex = GetBucketIndex(value[i], min, max, bucketCount); // calculate the bucket index
+            buckets[bucketIndex][bucketIndexes[bucketIndex]++] = value[i]; // place the element in the bucket and increment the bucket index
+        }
+
+        int valueIndex = 0;
+        for (int i = 0; i < bucketCount; i++)
+        {
+            // sort using bubble sort
+            for (int j = 0; j < bucketIndexes[i]; j++)
+            {
+                for (int k = 0; k < bucketIndexes[i] - j - 1; k++)
+                {
+                    if (Comparer<T>.Default.Compare(buckets[i][k], buckets[i][k + 1]) > 0)
+                    {
+                        T temp = buckets[i][k];
+                        buckets[i][k] = buckets[i][k + 1];
+                        buckets[i][k + 1] = temp;
+                    }
+                }
+            }
+
+            Array.Copy(buckets[i], 0, value, valueIndex, bucketIndexes[i]); // add the sorted elements to the original list
+            valueIndex += bucketIndexes[i]; // update the data index for the next bucket
+        }
+    }
+
+    private int GetBucketIndex(T element, T min, T max, int bucketCount)
+    {
+        int index = Convert.ToInt32(Math.Floor(Convert.ToDouble(bucketCount) * (Comparer<T>.Default.Compare(element, min) - Comparer<T>.Default.Compare(max, min)) / (Comparer<T>.Default.Compare(max, min) - Comparer<T>.Default.Compare(min, max))));
+        if (index >= bucketCount)
+        {
+            index = bucketCount - 1;
+        }
+        else if (index < 0)
+        {
+            index = 0;
+        }
+        return index;
+    }

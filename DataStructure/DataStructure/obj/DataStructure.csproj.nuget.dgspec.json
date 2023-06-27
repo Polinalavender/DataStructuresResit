@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\School\\University\\Year 2\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj": {}
+    "C:\\Users\\Nathan\\Desktop\\NHL Stenden\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj": {}
   },
   "projects": {
-    "D:\\School\\University\\Year 2\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj": {
+    "C:\\Users\\Nathan\\Desktop\\NHL Stenden\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\School\\University\\Year 2\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj",
+        "projectUniqueName": "C:\\Users\\Nathan\\Desktop\\NHL Stenden\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj",
         "projectName": "DataStructure",
-        "projectPath": "D:\\School\\University\\Year 2\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\School\\University\\Year 2\\DataStructuresResit\\DataStructure\\DataStructure\\obj\\",
+        "projectPath": "C:\\Users\\Nathan\\Desktop\\NHL Stenden\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj",
+        "packagesPath": "C:\\Users\\Nathan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nathan\\Desktop\\NHL Stenden\\DataStructuresResit\\DataStructure\\DataStructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Nathan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,7 +62,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
         }
       }
     }

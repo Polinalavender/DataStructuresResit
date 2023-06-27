@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ki16qZsoyQ1j0u2Gk0VCBXJXN2ckqiC/n8gZ3pAd7Key31CymxY+FZpaS/0I+xDdUt492xQupAgbmc/XuEqv9g==",
+  "dgSpecHash": "P8RUk1N6pfxvoxkm3mD0t6C/l2ycxiq0Sqyiz2tBASyptI3D3ySAUcFKSQ0qbnV0+PO//PQ8yEhoHcpdPpUW/w==",
   "success": true,
-  "projectFilePath": "D:\\School\\University\\Year 2\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj",
+  "projectFilePath": "C:\\Users\\Nathan\\Desktop\\NHL Stenden\\DataStructuresResit\\DataStructure\\DataStructure\\DataStructure.csproj",
   "expectedPackageFiles": [],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\School\\University\\Year 2\\DataStructuresResit\\DataStructure\\DataStructure\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

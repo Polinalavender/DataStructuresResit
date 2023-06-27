@@ -79,21 +79,21 @@
 
         //Bubble Sort ----------------------------------------------//
 
-        public void BubbleSort()
-        {
-            for (int i = 0; i < count - 1; i++)
+            public void BubbleSort()
             {
-                for (int j = 0; j < count - i - 1; j++)
+                for (int i = 0; i < count - 1; i++)
                 {
-                    if (Comparer<T>.Default.Compare(data[j], data[j + 1]) > 0)
+                    for (int j = 0; j < count - i - 1; j++)
                     {
-                        T temp = data[j];
-                        data[j] = data[j + 1];
-                        data[j + 1] = temp;
+                        if (Comparer<T>.Default.Compare(data[j], data[j + 1]) > 0)
+                        {
+                            T temp = data[j];
+                            data[j] = data[j + 1];
+                            data[j + 1] = temp;
+                        }
                     }
                 }
             }
-        }
 
         //Binary search ----------------------------------------------//
 
